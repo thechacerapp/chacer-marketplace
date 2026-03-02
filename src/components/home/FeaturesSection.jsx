@@ -4,13 +4,13 @@ const features = [
   {
     icon: Bell,
     title: "One-Press Calling",
-    desc: "Patients and staff press a single button to alert the right team member — no shouting, no overhead paging.",
+    desc: "Patients and staff press a single button to alert the right team member — no shouting, no overhead paging, and no more searching the office for employees.",
     color: "bg-blue-100 text-blue-600"
   },
   {
     icon: Wifi,
     title: "Wireless & Easy Setup",
-    desc: "No wiring required. Place buttons anywhere in minutes. Works on your existing WiFi network.",
+    desc: "No wiring required. Place devices anywhere in minutes — works on tablets, computers, and laptops on your existing WiFi network.",
     color: "bg-indigo-100 text-indigo-600"
   },
   {
