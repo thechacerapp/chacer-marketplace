@@ -50,12 +50,14 @@
 import HomePage from './pages/HomePage';
 import PricingPage from './pages/PricingPage';
 import GetStartedPage from './pages/GetStartedPage';
+import ClientDashboard from './pages/ClientDashboard';
 
 
 export const PAGES = {
     "HomePage": HomePage,
     "PricingPage": PricingPage,
     "GetStartedPage": GetStartedPage,
+    "ClientDashboard": ClientDashboard,
 }
 
 export const pagesConfig = {
