@@ -23,7 +23,8 @@ const features = [
     icon: BarChart2,
     title: "Response Analytics",
     desc: "Track response times, busiest rooms, and staff performance to optimize your workflow.",
-    color: "bg-green-100 text-green-600"
+    color: "bg-green-100 text-green-600",
+    comingSoon: true
   },
   {
     icon: Clock,
