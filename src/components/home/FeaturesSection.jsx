@@ -49,8 +49,11 @@ export default function FeaturesSection() {
           <p className="text-gray-500 text-lg max-w-xl mx-auto">From medical clinics to law firms — Chacer works in any environment where communication matters.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map(({ icon: Icon, title, desc, color }) => (
-            <div key={title} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          {features.map(({ icon: Icon, title, desc, color, comingSoon }) => (
+            <div key={title} className="relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              {comingSoon && (
+                <span className="absolute top-4 right-4 text-xs font-semibold bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Coming Soon</span>
+              )}
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${color}`}>
                 <Icon className="w-6 h-6" />
               </div>
