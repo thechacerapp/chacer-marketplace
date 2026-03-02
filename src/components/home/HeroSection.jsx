@@ -29,7 +29,7 @@ export default function HeroSection() {
             </Button>
           </Link>
           <Link to={createPageUrl("PricingPage")}>
-            <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 px-8">
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 px-8 bg-white/10">
               View Pricing
             </Button>
           </Link>
