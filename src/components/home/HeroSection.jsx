@@ -23,7 +23,7 @@ export default function HeroSection() {
           Chacer replaces overhead paging and shouting across hallways. Place smart call buttons in every room — patients and staff press once, the right person responds instantly.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Link to={createPageUrl("SignUpPage")}>
+          <Link to={createPageUrl("GetStartedPage")}>
             <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 font-semibold px-8">
               Start Free 10-Day Trial <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
