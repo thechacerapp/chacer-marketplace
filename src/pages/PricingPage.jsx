@@ -87,7 +87,7 @@ export default function PricingPage() {
                   <span className={`text-5xl font-extrabold ${plan.highlight ? "text-white" : "text-gray-900"}`}>${price}</span>
                   <span className={`text-sm ml-1 ${plan.highlight ? "text-blue-200" : "text-gray-400"}`}>/mo{billing === "annual" ? ", billed annually" : ""}</span>
                 </div>
-                <Link to={`${createPageUrl("SignUpPage")}?plan=${encodeURIComponent(planKey)}&billing=${billing}`}>
+                <Link to={`${createPageUrl("GetStartedPage")}?plan=${encodeURIComponent(planKey)}&billing=${billing}`}>
                   <Button
                     size="lg"
                     className={`w-full mb-8 font-semibold ${plan.highlight ? "bg-white text-blue-900 hover:bg-blue-50" : "bg-blue-600 hover:bg-blue-700 text-white"}`}
