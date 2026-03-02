@@ -1,5 +1,5 @@
 const steps = [
-  { step: "1", title: "Sign Up & Install", desc: "Create your account, receive your Chacer devices, and place them throughout your office. Setup takes under 30 minutes." },
+  { step: "1", title: "Sign Up & Install", desc: "Create your account and place your devices throughout your office. Quick setup — you'll be ready in no time." },
   { step: "2", title: "Press a Button", desc: "A patient or staff member presses the call button in any room. The request is sent instantly to your team." },
   { step: "3", title: "Staff Responds", desc: "The right staff member receives an alert on their device and responds — tracked automatically in the dashboard." },
   { step: "4", title: "Review & Improve", desc: "Use the analytics dashboard to identify bottlenecks, improve response times, and delight your clients." }
