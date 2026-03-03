@@ -54,9 +54,9 @@ Deno.serve(async (req) => {
       line_items: [{ price: priceId, quantity: 1 }],
       subscription_data: {
         trial_period_days: 10,
-        metadata: { office_id, plan }
+        metadata: { office_id, plan: normalizedPlan }
       },
-      metadata: { office_id, plan },
+      metadata: { office_id, plan: normalizedPlan },
       success_url: `${appUrl}/client-dashboard?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${appUrl}/pricing`,
     });
