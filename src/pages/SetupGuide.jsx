@@ -67,6 +67,46 @@ const steps = [
       "You can update or remove your logo at any time."
     ],
     tip: "A logo makes the app feel like your own and helps staff recognize it instantly on shared devices."
+  },
+  {
+    number: "5",
+    icon: Tablet,
+    title: "Go Live on Your Devices",
+    color: "bg-teal-600",
+    intro: "Once your app is built and configured, you can open it on any tablet, phone, or computer in your office. No special installation required — just open your website.",
+    instructions: [
+      "Open your Chacer website on each device you plan to use.",
+      "Assign the correct room name to each device when prompted.",
+      "Set the volume on each device to your preferred level.",
+      "You are ready to go — staff can start making and receiving calls immediately.",
+      "To make any changes (names, rooms, sounds), go to Settings from any device.",
+      "Important: Do not share your Chacer website link publicly. Only give it to people you want to have access to the program."
+    ],
+    tip: "Bookmark the website on each device so staff can open it with one tap."
+  },
+  {
+    number: "6",
+    icon: Timer,
+    title: "Using the Timer",
+    color: "bg-rose-600",
+    intro: "The timer is a hands-free tool built into Chacer, perfect for timing procedures when your hands are busy.",
+    instructions: [
+      "The timer runs continuously and can be set for the whole office or unique to each room.",
+      "It starts at 0:00 and counts up. When it reaches the assigned time, it resets and starts over.",
+      "To use it: note the current time and add your desired duration. For example, if the timer reads 4:05 and you need 20 seconds, go until 4:25.",
+      "Prefer zero math? Just tap the timer and it resets to zero instantly — then count up from there.",
+      "Set your preferred cycle length in Settings (e.g., 5 minutes, 10 minutes)."
+    ],
+    subSection: {
+      title: "Example Use Case",
+      items: [
+        "You need to hold bonding agent for 20 seconds with both hands occupied.",
+        "Glance at the timer: it reads 4:05.",
+        "Wait until it reaches 4:25 — done.",
+        "Or tap the timer to reset to 0:00, then wait until it reads 0:20."
+      ]
+    },
+    tip: "The tap-to-reset option is the easiest approach for quick, one-off timings without any math."
   }
 ];
 
