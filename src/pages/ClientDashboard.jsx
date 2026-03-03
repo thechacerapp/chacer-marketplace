@@ -3,7 +3,9 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, CreditCard, CheckCircle, Clock, XCircle, Loader2, Bell } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+import { ExternalLink, CreditCard, CheckCircle, Clock, XCircle, Loader2, Bell, BookOpen } from "lucide-react";
 
 const statusColors = {
   active: "bg-green-100 text-green-700",
