@@ -166,6 +166,22 @@ export default function ClientDashboard() {
           </Card>
         </div>
 
+        {/* Setup Guide */}
+        <Card className="mb-6 border-blue-100 bg-blue-50">
+          <CardContent className="py-5 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <BookOpen className="w-5 h-5 text-blue-600 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-gray-900 text-sm">Getting Started Guide</p>
+                <p className="text-gray-500 text-xs">Step-by-step setup instructions for your Chacer app.</p>
+              </div>
+            </div>
+            <Link to={createPageUrl("SetupGuide")}>
+              <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">View Guide</Button>
+            </Link>
+          </CardContent>
+        </Card>
+
         {/* Chacer App Access */}
         <Card>
           <CardHeader>
