@@ -1,4 +1,4 @@
-import { CheckCircle, Monitor, Users, MessageSquare, Image, ChevronRight, Tablet, Timer, Siren } from "lucide-react";
+import { CheckCircle, Monitor, Users, MessageSquare, Image, ChevronRight, Tablet, Timer, AlertTriangle } from "lucide-react";
 
 const steps = [
   {
