@@ -108,6 +108,21 @@ const steps = [
       ]
     },
     tip: "The tap-to-reset option is the easiest approach for quick, one-off timings without any math."
+  },
+  {
+    number: "7",
+    icon: AlertTriangle,
+    title: "Emergency Button",
+    color: "bg-red-600",
+    intro: "The Emergency Button is a special feature that instantly alerts every team member at once — for those moments when you need all hands on deck.",
+    instructions: [
+      "The emergency button calls all team members simultaneously, regardless of room or role.",
+      "It is activated with a double-tap to prevent accidental triggering.",
+      "The emergency alert uses a dedicated sound — we strongly recommend setting it to a siren so it is immediately and unmistakably different from a regular call.",
+      "Make sure all devices have their volume turned up so the alert is heard throughout the office.",
+      "You can configure the emergency sound in Settings."
+    ],
+    tip: "A siren-style sound is the best choice — staff will instantly know an emergency alert is different from a normal call, even without looking at the screen."
   }
 ];
 
