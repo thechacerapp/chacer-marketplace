@@ -95,7 +95,8 @@ const steps = [
       "It starts at 0:00 and counts up. When it reaches the assigned time, it resets and starts over.",
       "To use it: note the current time and add your desired duration. For example, if the timer reads 4:05 and you need 20 seconds, go until 4:25.",
       "Prefer zero math? Just tap the timer and it resets to zero instantly — then count up from there.",
-      "Set your preferred cycle length in Settings (e.g., 5 minutes, 10 minutes)."
+      "Set your preferred cycle length in Settings (e.g., 5 minutes, 10 minutes).",
+      "There are additional timer settings available to customize how it works for your office — explore Settings to find the options that fit your workflow best."
     ],
     subSection: {
       title: "Example Use Case",
