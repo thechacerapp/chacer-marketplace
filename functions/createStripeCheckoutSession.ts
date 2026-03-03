@@ -18,9 +18,16 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { office_id, office_name, email, plan } = await req.json();
+    const { office_id, office_name, email, plan, billing } = await req.json();
 
-    const priceId = PRICE_IDS[plan];
+    // Normalize plan name — handle both "Monthly"/"Annual" and "Basic Monthly"/"Basic Annual"
+    const planAliases = {
+      "Monthly": "Basic Monthly",
+      "Annual": "Basic Annual",
+    };
+    const normalizedPlan = PRICE_IDS[plan] ? plan : (planAliases[plan] || plan);
+
+    const priceId = PRICE_IDS[normalizedPlan];
     if (!priceId) {
       return Response.json({ error: `Unknown plan: ${plan}` }, { status: 400 });
     }
