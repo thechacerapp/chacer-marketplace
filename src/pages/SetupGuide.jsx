@@ -25,7 +25,7 @@ const steps = [
       "Go to the Team section in Settings.",
       "Add each team member by name (e.g., Dr. A, Dr. B, A-RDH, B-RDH, Any Assistant, Office Manager, Reception, Insurance).",
       "Names can be full names or short abbreviations — whatever fits your workflow.",
-      "If the app feels crowded, shorten names (e.g., "Dr. Anderson" → "Dr. A").",
+      "If the app feels crowded, shorten names (e.g., 'Dr. Anderson' \u2192 'Dr. A').",
       "You can edit team names at any time without losing any history."
     ],
     subSection: {
