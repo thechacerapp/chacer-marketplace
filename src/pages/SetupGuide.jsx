@@ -123,6 +123,33 @@ const steps = [
       "You can configure the emergency sound in Settings."
     ],
     tip: "A siren-style sound is the best choice — staff will instantly know an emergency alert is different from a normal call, even without looking at the screen."
+  },
+  {
+    number: "8",
+    icon: BatteryCharging,
+    title: "Tablet Care & Mounting",
+    color: "bg-indigo-600",
+    intro: "Taking care of your tablets will extend their lifespan and keep Chacer running reliably every day. Here are our top recommendations for setup, placement, and daily habits.",
+    instructions: [
+      "Turn tablets off at the end of each workday. This extends battery life and gives the device a chance to rest.",
+      "Do not leave tablets plugged in and charging 24/7 — this degrades the battery over time. Use a timer outlet or smart plug to limit charging to a few hours per night.",
+      "Set screen brightness to a moderate level (around 50–70%) to reduce battery drain and extend screen life.",
+      "Set the screen timeout to a long interval (or never) so the app stays visible without staff needing to tap to wake it.",
+      "Enable Guided Access (iOS) or Kiosk Mode (Android) to lock the tablet to the Chacer app — this prevents staff from accidentally navigating away.",
+      "Use Wi-Fi only mode and disable cellular data if the tablet supports it, to conserve battery.",
+      "Schedule software updates to run overnight so they never interrupt the workday.",
+      "For wall mounting, we strongly recommend 3M Command Strips (velcro-style hangers). They hold tablets securely, require no drilling, and make it easy to remove or reposition the tablet whenever needed."
+    ],
+    subSection: {
+      title: "Charging Best Practice",
+      items: [
+        "Plug in the tablet at the end of the day when you leave.",
+        "Use a timer outlet set to cut off power after 3–4 hours.",
+        "The tablet will be fully charged and unplugged overnight — ready for a fresh day without battery wear.",
+        "Avoid letting the battery drop below 20% regularly, as this also shortens battery life."
+      ]
+    },
+    tip: "3M Command velcro strips are ideal for mounting tablets — no holes, no damage to walls, and easy to move if you rearrange rooms."
   }
 ];
 
