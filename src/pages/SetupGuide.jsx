@@ -141,12 +141,14 @@ const steps = [
       "For wall mounting, we strongly recommend 3M Command Strips (velcro-style hangers). They hold tablets securely, require no drilling, and make it easy to remove or reposition the tablet whenever needed."
     ],
     subSection: {
-      title: "Charging Best Practice",
+      title: "Smart Charging Solutions",
       items: [
-        "Plug in the tablet at the end of the day when you leave.",
-        "Use a timer outlet set to cut off power after 3–4 hours.",
-        "The tablet will be fully charged and unplugged overnight — ready for a fresh day without battery wear.",
-        "Avoid letting the battery drop below 20% regularly, as this also shortens battery life."
+        "Never leave tablets plugged in 24/7 — constant charging causes battery swelling and significantly shortens lifespan. The goal is to keep the battery between 20% and 80%.",
+        "Smart Plug + Automation: Use a Kasa Smart Plug or Sonoff S31 paired with Alexa or Home Assistant to automatically turn charging on and off on a schedule.",
+        "Dedicated Timer: The Charge-O-Matic is designed specifically for this — set exact on/off hours to prevent overcharging without any smart home setup.",
+        "Software Option (Android): Fully Kiosk Browser can monitor battery level and trigger a smart plug via Home Assistant to stop charging at a set percentage.",
+        "In-Wall Option: Lumary Smart Outlets or Bseed USB wall plates with built-in smart functionality offer a clean, permanent solution.",
+        "A simple mechanical timer outlet works too — set it to charge for 3–4 hours overnight and cut off automatically."
       ]
     },
     tip: "3M Command velcro strips are ideal for mounting tablets — no holes, no damage to walls, and easy to move if you rearrange rooms."
