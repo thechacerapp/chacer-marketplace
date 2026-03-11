@@ -85,7 +85,7 @@ export default function PrivacyPolicy() {
               <li><strong>Opt out</strong> of non-essential communications</li>
               <li><strong>Port</strong> your data in a machine-readable format</li>
             </ul>
-            <p className="mt-3">To exercise any of these rights, contact us at <a href="mailto:thehacerapp@gmail.com" className="text-blue-600 underline">thehacerapp@gmail.com</a>.</p>
+            <p className="mt-3">To exercise any of these rights, contact us at <a href="mailto:thechacerapp@gmail.com" className="text-blue-600 underline">thechacerapp@gmail.com</a>.</p>
           </Section>
 
           <Section title="8. Children's Privacy">
@@ -112,7 +112,7 @@ export default function PrivacyPolicy() {
             <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
             <div className="mt-3 bg-gray-50 rounded-xl p-4 border border-gray-100">
               <p className="font-semibold text-gray-800">Chacer</p>
-              <p className="text-gray-600">Email: <a href="mailto:thehacerapp@gmail.com" className="text-blue-600 underline">thehacerapp@gmail.com</a></p>
+              <p className="text-gray-600">Email: <a href="mailto:thechacerapp@gmail.com" className="text-blue-600 underline">thechacerapp@gmail.com</a></p>
               <p className="text-gray-600">Website: <a href="https://thechacer.com" className="text-blue-600 underline">thechacer.com</a></p>
             </div>
           </Section>
