@@ -53,6 +53,7 @@ import GetStartedPage from './pages/GetStartedPage';
 import HomePage from './pages/HomePage';
 import PricingPage from './pages/PricingPage';
 import SetupGuide from './pages/SetupGuide';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 
 export const PAGES = {
@@ -62,6 +63,7 @@ export const PAGES = {
     "HomePage": HomePage,
     "PricingPage": PricingPage,
     "SetupGuide": SetupGuide,
+    "PrivacyPolicy": PrivacyPolicy,
 }
 
 export const pagesConfig = {
