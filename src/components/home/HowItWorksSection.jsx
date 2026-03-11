@@ -7,7 +7,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-24 bg-white">
+    <section aria-label="How Chacer Works" className="py-24 bg-white">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How Chacer Works</h2>
@@ -16,10 +16,10 @@ export default function HowItWorksSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map(({ step, title, desc }) => (
             <div key={step} className="text-center">
-              <div className="w-14 h-14 rounded-full bg-blue-600 text-white text-xl font-bold flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 rounded-full bg-blue-600 text-white text-xl font-bold flex items-center justify-center mx-auto mb-4" aria-hidden="true">
                 {step}
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+              <h3 className="font-semibold text-gray-900 mb-2"><span className="sr-only">Step {step}: </span>{title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
             </div>
           ))}

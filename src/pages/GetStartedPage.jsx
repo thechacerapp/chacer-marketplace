@@ -105,7 +105,7 @@ export default function GetStartedPage() {
               </Select>
             </div>
 
-            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {error && <p className="text-red-500 text-sm" role="alert" aria-live="assertive">{error}</p>}
 
             <Button type="submit" disabled={loading} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold h-12">
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Continue to Payment →"}

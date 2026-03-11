@@ -5,14 +5,14 @@ import { Bell, ArrowRight, CheckCircle } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white overflow-hidden">
+    <section aria-label="Hero" className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-400 blur-3xl" />
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-indigo-400 blur-3xl" />
       </div>
       <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-36 text-center">
         <div className="inline-flex items-center gap-2 bg-blue-700/50 border border-blue-500/50 rounded-full px-4 py-1.5 text-sm text-blue-200 mb-8">
-          <Bell className="w-4 h-4" />
+          <Bell className="w-4 h-4" aria-hidden="true" />
           Smart In-Office Call Buttons
         </div>
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
@@ -25,7 +25,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <Link to={createPageUrl("GetStartedPage")}>
             <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 font-semibold px-8">
-              Start Free 10-Day Trial <ArrowRight className="ml-2 w-5 h-5" />
+              Start Free 10-Day Trial <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
             </Button>
           </Link>
           <Link to={createPageUrl("PricingPage")}>
@@ -37,7 +37,7 @@ export default function HeroSection() {
         <div className="flex flex-wrap justify-center gap-6 text-sm text-blue-200">
           {["10-day free trial", "No setup fees", "Full refund if cancelled within 10 days", "Works in any office type"].map(item => (
             <div key={item} className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-green-400" />
+              <CheckCircle className="w-4 h-4 text-green-400" aria-hidden="true" />
               {item}
             </div>
           ))}

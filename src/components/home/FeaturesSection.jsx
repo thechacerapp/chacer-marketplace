@@ -42,7 +42,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section aria-label="Features" className="py-24 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Everything Your Office Needs</h2>
@@ -50,12 +50,12 @@ export default function FeaturesSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map(({ icon: Icon, title, desc, color, comingSoon }) => (
-            <div key={title} className="relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div key={title} className="relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow" role="article">
               {comingSoon && (
-                <span className="absolute top-4 right-4 text-xs font-semibold bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Coming Soon</span>
+                <span className="absolute top-4 right-4 text-xs font-semibold bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full" aria-label={`${title} - Coming Soon`}>Coming Soon</span>
               )}
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${color}`}>
-                <Icon className="w-6 h-6" />
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${color}`} aria-hidden="true">
+                <Icon className="w-6 h-6" aria-hidden="true" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
               <p className="text-gray-500 leading-relaxed">{desc}</p>
