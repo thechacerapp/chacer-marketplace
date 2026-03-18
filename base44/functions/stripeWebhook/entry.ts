@@ -17,12 +17,33 @@ Deno.serve(async (req) => {
     const data = event.data.object;
 
     if (event.type === "checkout.session.completed") {
-      const officeId = data.metadata?.office_id;
       const plan = data.metadata?.plan;
       const subscriptionId = data.subscription;
       const customerId = data.customer;
+      const { office_name, email, office_type, contact_phone } = data.metadata || {};
 
-      if (!officeId || !subscriptionId) {
+      if (!subscriptionId) {
+        return Response.json({ received: true });
+      }
+
+      // Create Office if it doesn't exist
+      let offices = await base44.asServiceRole.entities.Office.filter({ contact_email: email });
+      let officeId;
+      if (offices.length === 0 && office_name && email) {
+        const newOffice = await base44.asServiceRole.entities.Office.create({
+          name: office_name,
+          contact_email: email,
+          office_type: office_type || "General Office",
+          contact_phone: contact_phone || "",
+          stripe_customer_id: customerId,
+          status: "active"
+        });
+        officeId = newOffice.id;
+      } else {
+        officeId = offices[0]?.id;
+      }
+
+      if (!officeId) {
         return Response.json({ received: true });
       }
 
