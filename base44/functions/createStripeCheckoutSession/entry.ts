@@ -18,7 +18,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { office_id, office_name, email, plan, billing } = await req.json();
+    const { office_id, office_name, email, plan, billing, discount_code } = await req.json();
 
     // Normalize plan name — handle both "Monthly"/"Annual" and "Basic Monthly"/"Basic Annual"
     const planAliases = {

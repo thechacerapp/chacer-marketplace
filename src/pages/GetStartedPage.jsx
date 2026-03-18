@@ -17,6 +17,9 @@ export default function GetStartedPage() {
     contact_phone: "",
     office_type: "",
   });
+  const [discountCode, setDiscountCode] = useState("");
+  const [discountStatus, setDiscountStatus] = useState(null); // null | "valid" | "invalid"
+  const [discountInfo, setDiscountInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
