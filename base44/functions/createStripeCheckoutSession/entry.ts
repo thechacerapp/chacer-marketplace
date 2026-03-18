@@ -94,12 +94,14 @@ Deno.serve(async (req) => {
       await base44.asServiceRole.entities.DiscountCode.update(dc.id, { times_used: (dc.times_used || 0) + 1 });
     }
 
+    const hasDiscount = Object.keys(discountOptions).length > 0;
+
     const sessionParams = {
       customer: customer.id,
       mode: "subscription",
       line_items: [{ price: priceId, quantity: 1 }],
       subscription_data: {
-        trial_period_days: discount_code ? 0 : 10,
+        ...(!hasDiscount ? { trial_period_days: 10 } : {}),
         metadata: { office_id, plan: normalizedPlan }
       },
       metadata: { office_id, plan: normalizedPlan },
