@@ -11,8 +11,7 @@ const PRICE_IDS = {
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-
-    const { office_id, office_name, email, plan, billing, discount_code } = await req.json();
+    const { office_name, email, office_type, contact_phone, plan, billing, discount_code } = await req.json();
 
     const planAliases = { "Monthly": "Basic Monthly", "Annual": "Basic Annual" };
     const normalizedPlan = PRICE_IDS[plan] ? plan : (planAliases[plan] || plan);
@@ -24,11 +23,8 @@ Deno.serve(async (req) => {
     const rawAppUrl = Deno.env.get("BASE44_APP_URL") || "";
     const appUrl = rawAppUrl.startsWith("http") ? rawAppUrl.replace(/\/$/, "") : `https://${rawAppUrl.replace(/\/$/, "")}`;
 
-    // Always create a new Stripe customer (fastest path — no lookup needed)
+    // Create Stripe customer
     const customer = await stripe.customers.create({ email, name: office_name });
-
-    // Save customer ID to office (fire and forget — don't await)
-    base44.asServiceRole.entities.Office.update(office_id, { stripe_customer_id: customer.id });
 
     // Handle discount code
     let discountOptions = {};
@@ -64,15 +60,16 @@ Deno.serve(async (req) => {
 
     const hasDiscount = Object.keys(discountOptions).length > 0;
 
+    // Store form data in session metadata to recreate Office on success
     const session = await stripe.checkout.sessions.create({
       customer: customer.id,
       mode: "subscription",
       line_items: [{ price: priceId, quantity: 1 }],
       subscription_data: {
         ...(!hasDiscount ? { trial_period_days: 10 } : {}),
-        metadata: { office_id, plan: normalizedPlan }
+        metadata: { plan: normalizedPlan, office_name, email, office_type, contact_phone }
       },
-      metadata: { office_id, plan: normalizedPlan },
+      metadata: { plan: normalizedPlan, office_name, email, office_type, contact_phone },
       success_url: `${appUrl}/ClientDashboard?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${appUrl}/PricingPage`,
       ...discountOptions,
