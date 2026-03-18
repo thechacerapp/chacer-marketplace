@@ -50,13 +50,6 @@ export default function GetStartedPage() {
     }
   };
 
-  const planPrices = {
-    "Basic Monthly": "$49/mo",
-    "Basic Annual": "$39/mo (billed annually)",
-    "Premium Monthly": "$99/mo",
-    "Premium Annual": "$79/mo (billed annually)"
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-16 px-4">
       <div className="w-full max-w-lg">
@@ -64,11 +57,31 @@ export default function GetStartedPage() {
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900">Start Your Free Trial</h1>
             <p className="text-gray-500 mt-2 text-sm">10 days free. Cancel for a full refund within 10 days.</p>
-            {planFromUrl && (
-              <div className="mt-3 inline-block bg-blue-50 text-blue-700 text-sm px-4 py-1.5 rounded-full font-medium">
-                Plan: {planFromUrl} — {planPrices[planFromUrl] || ""}
-              </div>
-            )}
+          </div>
+
+          {/* Plan Selector */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <button
+              type="button"
+              onClick={() => setBilling("monthly")}
+              className={`rounded-xl border-2 p-4 text-left transition-all ${billing === "monthly" ? "border-blue-600 bg-blue-50" : "border-gray-200 bg-white hover:border-gray-300"}`}
+            >
+              <p className="font-semibold text-gray-900 text-sm">Monthly</p>
+              <p className="text-2xl font-extrabold text-gray-900 mt-1">$49<span className="text-sm font-normal text-gray-400">/mo</span></p>
+              <p className="text-xs text-gray-400 mt-1">Billed month-to-month</p>
+              {billing === "monthly" && <BadgeCheck className="w-4 h-4 text-blue-600 mt-2" />}
+            </button>
+            <button
+              type="button"
+              onClick={() => setBilling("annual")}
+              className={`rounded-xl border-2 p-4 text-left transition-all relative ${billing === "annual" ? "border-blue-600 bg-blue-50" : "border-gray-200 bg-white hover:border-gray-300"}`}
+            >
+              <span className="absolute top-2 right-2 text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">Save 20%</span>
+              <p className="font-semibold text-gray-900 text-sm">Yearly</p>
+              <p className="text-2xl font-extrabold text-gray-900 mt-1">$39<span className="text-sm font-normal text-gray-400">/mo</span></p>
+              <p className="text-xs text-gray-400 mt-1">$468 billed once/year</p>
+              {billing === "annual" && <BadgeCheck className="w-4 h-4 text-blue-600 mt-2" />}
+            </button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
