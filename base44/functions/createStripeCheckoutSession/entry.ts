@@ -11,10 +11,6 @@ const PRICE_IDS = {
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-    const user = await base44.auth.me();
-    if (!user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 });
-    }
 
     const { office_id, office_name, email, plan, billing, discount_code } = await req.json();
 
