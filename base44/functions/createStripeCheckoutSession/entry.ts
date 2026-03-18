@@ -44,9 +44,17 @@ Deno.serve(async (req) => {
       stripe_customer_id: customer.id
     });
 
-    const host = req.headers.get("host") || "";
-    // Use production URL if available, otherwise derive from host (strip preview-sandbox prefixes)
-    const appUrl = Deno.env.get("BASE44_APP_URL") || `https://${host}`;
+    const host = req.headers.get("host") || "chacer-marketplace-384722b3.base44.app";
+    const rawAppUrl = Deno.env.get("BASE44_APP_URL") || "";
+    // Ensure URL has a scheme
+    let appUrl;
+    if (rawAppUrl && rawAppUrl.startsWith("http")) {
+      appUrl = rawAppUrl.replace(/\/$/, "");
+    } else if (rawAppUrl) {
+      appUrl = `https://${rawAppUrl.replace(/\/$/, "")}`;
+    } else {
+      appUrl = `https://${host}`;
+    }
 
     // Handle discount code
     let discountOptions = {};
