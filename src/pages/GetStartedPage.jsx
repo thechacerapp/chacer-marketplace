@@ -25,6 +25,12 @@ export default function GetStartedPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!form.name || !form.contact_email || !form.office_type) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+    
     setLoading(true);
     setError("");
 
