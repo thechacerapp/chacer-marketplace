@@ -42,7 +42,8 @@ export default function GetStartedPage() {
       office_name: form.name,
       email: form.contact_email,
       plan,
-      billing
+      billing,
+      discount_code: discountCode.trim().toUpperCase() || undefined
     });
 
     if (response.data?.url) {
