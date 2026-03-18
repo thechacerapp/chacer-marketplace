@@ -6,8 +6,6 @@ const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY"));
 const PRICE_IDS = {
   "Basic Monthly": Deno.env.get("STRIPE_BASIC_MONTHLY_PRICE_ID"),
   "Basic Annual": Deno.env.get("STRIPE_BASIC_ANNUAL_PRICE_ID"),
-  "Premium Monthly": Deno.env.get("STRIPE_PREMIUM_MONTHLY_PRICE_ID"),
-  "Premium Annual": Deno.env.get("STRIPE_PREMIUM_ANNUAL_PRICE_ID"),
 };
 
 Deno.serve(async (req) => {
