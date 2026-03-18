@@ -28,28 +28,26 @@ export default function GetStartedPage() {
     setLoading(true);
     setError("");
 
-    const office = await base44.entities.Office.create({
-      name: form.name,
-      contact_email: form.contact_email,
-      contact_phone: form.contact_phone,
-      office_type: form.office_type,
-      status: "pending"
-    });
+    try {
+      const plan = billing === "annual" ? "Basic Annual" : "Basic Monthly";
+      const response = await base44.functions.invoke("createStripeCheckoutSession", {
+        office_name: form.name,
+        email: form.contact_email,
+        office_type: form.office_type,
+        contact_phone: form.contact_phone,
+        plan,
+        billing,
+        discount_code: discountCode.trim().toUpperCase() || undefined
+      });
 
-    const plan = billing === "annual" ? "Basic Annual" : "Basic Monthly";
-    const response = await base44.functions.invoke("createStripeCheckoutSession", {
-      office_id: office.id,
-      office_name: form.name,
-      email: form.contact_email,
-      plan,
-      billing,
-      discount_code: discountCode.trim().toUpperCase() || undefined
-    });
-
-    if (response.data?.url) {
-      window.location.href = response.data.url;
-    } else {
-      setError(response.data?.error || "Could not initiate payment. Please try again.");
+      if (response.data?.url) {
+        window.location.href = response.data.url;
+      } else {
+        setError(response.data?.error || "Could not initiate payment. Please try again.");
+        setLoading(false);
+      }
+    } catch (err) {
+      setError(err.message || "An error occurred. Please try again.");
       setLoading(false);
     }
   };
