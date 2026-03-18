@@ -33,12 +33,13 @@ export default function GetStartedPage() {
       status: "pending"
     });
 
+    const plan = billing === "annual" ? "Basic Annual" : "Basic Monthly";
     const response = await base44.functions.invoke("createStripeCheckoutSession", {
       office_id: office.id,
       office_name: form.name,
       email: form.contact_email,
-      plan: planFromUrl,
-      billing: billingFromUrl
+      plan,
+      billing
     });
 
     if (response.data?.url) {
