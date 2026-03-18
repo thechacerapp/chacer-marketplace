@@ -26,37 +26,7 @@ Deno.serve(async (req) => {
     // Create Stripe customer
     const customer = await stripe.customers.create({ email, name: office_name });
 
-    // Handle discount code
     let discountOptions = {};
-    if (discount_code) {
-      const code = discount_code.trim().toUpperCase();
-      const codes = await base44.asServiceRole.entities.DiscountCode.filter({ code, active: true });
-      const dc = codes[0];
-      if (!dc) {
-        return Response.json({ error: "Invalid or inactive discount code." }, { status: 400 });
-      }
-
-      let couponId = dc.stripe_coupon_id;
-      if (!couponId) {
-        let couponParams = {};
-        if (dc.type === "free_forever") {
-          couponParams = { percent_off: 100, duration: "forever", name: "CHACEFREE" };
-        } else if (dc.type === "free_month") {
-          couponParams = { percent_off: 100, duration: "once", name: "Free Month" };
-        } else if (dc.type === "percent_off_annual") {
-          if (normalizedPlan !== "Basic Annual") {
-            return Response.json({ error: "This discount code is only valid for the yearly plan." }, { status: 400 });
-          }
-          couponParams = { percent_off: dc.percent_off || 10, duration: "once", name: `${dc.percent_off || 10}% Off Annual` };
-        }
-        const coupon = await stripe.coupons.create(couponParams);
-        couponId = coupon.id;
-        base44.asServiceRole.entities.DiscountCode.update(dc.id, { stripe_coupon_id: couponId, times_used: (dc.times_used || 0) + 1 });
-      } else {
-        base44.asServiceRole.entities.DiscountCode.update(dc.id, { times_used: (dc.times_used || 0) + 1 });
-      }
-      discountOptions = { discounts: [{ coupon: couponId }] };
-    }
 
     const hasDiscount = Object.keys(discountOptions).length > 0;
 
