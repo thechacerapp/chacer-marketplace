@@ -47,7 +47,7 @@ export default function GetStartedPage() {
       });
 
       if (response.data?.url) {
-        window.location.href = response.data.url;
+        window.open(response.data.url, "_blank");
       } else {
         setError(response.data?.error || "Could not initiate payment. Please try again.");
         setLoading(false);
