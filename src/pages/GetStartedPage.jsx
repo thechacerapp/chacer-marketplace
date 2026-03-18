@@ -49,7 +49,7 @@ export default function GetStartedPage() {
     if (response.data?.url) {
       window.location.href = response.data.url;
     } else {
-      setError("Could not initiate payment. Please try again.");
+      setError(response.data?.error || "Could not initiate payment. Please try again.");
       setLoading(false);
     }
   };
