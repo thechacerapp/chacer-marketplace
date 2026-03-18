@@ -8,9 +8,9 @@ import { CheckCircle, Loader2, BadgeCheck } from "lucide-react";
 
 export default function GetStartedPage() {
   const urlParams = new URLSearchParams(window.location.search);
-  const planFromUrl = urlParams.get("plan") || "Basic Monthly";
   const billingFromUrl = urlParams.get("billing") || "monthly";
 
+  const [billing, setBilling] = useState(billingFromUrl === "annual" ? "annual" : "monthly");
   const [form, setForm] = useState({
     name: "",
     contact_email: "",
