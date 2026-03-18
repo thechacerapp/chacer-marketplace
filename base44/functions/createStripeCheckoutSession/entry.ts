@@ -44,7 +44,9 @@ Deno.serve(async (req) => {
       stripe_customer_id: customer.id
     });
 
-    const appUrl = Deno.env.get("BASE44_APP_URL") || `https://${req.headers.get("host")}`;
+    const host = req.headers.get("host") || "";
+    // Use production URL if available, otherwise derive from host (strip preview-sandbox prefixes)
+    const appUrl = Deno.env.get("BASE44_APP_URL") || `https://${host}`;
 
     // Handle discount code
     let discountOptions = {};
