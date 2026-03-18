@@ -51,7 +51,7 @@ export default function PricingPage() {
             <h2 className="text-2xl font-bold text-white mb-1">Annual</h2>
             <p className="text-sm text-blue-200 mb-6">Up to 30 devices. Billed once per year.</p>
             <div className="mb-2">
-              <span className="text-5xl font-extrabold text-white">$470</span>
+              <span className="text-5xl font-extrabold text-white">$468</span>
               <span className="text-sm ml-1 text-blue-200">/yr</span>
             </div>
             <p className="text-blue-300 text-sm mb-6">~$39/mo — save $118 vs monthly</p>
