@@ -1,4 +1,5 @@
-import { CheckCircle, Monitor, Users, MessageSquare, Image, ChevronRight, Tablet, Timer, AlertTriangle, BatteryCharging } from "lucide-react";
+import { CheckCircle, Monitor, Users, MessageSquare, Image, ChevronRight, Tablet, Timer, AlertTriangle, BatteryCharging, Printer } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const steps = [
   {
@@ -158,6 +159,13 @@ const steps = [
 export default function SetupGuide() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <style>{`
+        @media print {
+          .no-print { display: none !important; }
+          body { background: white !important; }
+          .print-card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb !important; }
+        }
+      `}</style>
       <div className="max-w-3xl mx-auto px-6 py-16">
         {/* Header */}
         <div className="text-center mb-12">
@@ -170,6 +178,9 @@ export default function SetupGuide() {
             Follow these steps to get your Chacer app fully set up and ready for your team.
             You'll be up and running in under an hour.
           </p>
+          <Button variant="outline" className="mt-6 no-print" onClick={() => window.print()}>
+            <Printer className="w-4 h-4 mr-2" /> Print Guide
+          </Button>
         </div>
 
         {/* Steps */}
@@ -177,7 +188,7 @@ export default function SetupGuide() {
           {steps.map((step) => {
             const Icon = step.icon;
             return (
-              <div key={step.number} className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+              <div key={step.number} className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden print-card">
                 {/* Step Header */}
                 <div className={`${step.color} px-8 py-5 flex items-center gap-4`}>
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
