@@ -4,6 +4,20 @@ import { Button } from "@/components/ui/button";
 const steps = [
   {
     number: "1",
+    icon: Tablet,
+    title: "Access Your Chacer App",
+    color: "bg-sky-600",
+    intro: "Before you begin setup, you'll need to open your Chacer app. We'll send you everything you need by email.",
+    instructions: [
+      "Check your email for a message from Chacer — it will include your website link and a download file for tablet installation.",
+      "We recommend opening the app on the website first — it's easier to configure your office settings from a computer or laptop.",
+      "Once your settings are all configured, you can then open the app on your tablets and other devices.",
+      "To open the app, go to your website link (or open the downloaded app on a tablet) and log in with the email and password provided in your welcome email."
+    ],
+    tip: "Do your initial setup on the website — it's much easier than configuring everything on a small tablet screen."
+  },
+  {
+    number: "2",
     icon: Monitor,
     title: "Set Up Your Rooms",
     color: "bg-blue-600",
@@ -17,7 +31,7 @@ const steps = [
     tip: "Use short, clear names that your team will instantly recognize."
   },
   {
-    number: "2",
+    number: "3",
     icon: Users,
     title: "Add Your Team",
     color: "bg-purple-600",
@@ -41,7 +55,7 @@ const steps = [
     tip: "Grouping sounds by role (Doctors / Hygiene / Assistants) helps staff react faster without needing to look at the screen."
   },
   {
-    number: "3",
+    number: "4",
     icon: MessageSquare,
     title: "Add Call Reasons",
     color: "bg-green-600",
@@ -56,7 +70,7 @@ const steps = [
     tip: "Keep reasons short and action-oriented. The goal is one tap, not a paragraph."
   },
   {
-    number: "4",
+    number: "5",
     icon: Image,
     title: "Add Your Logo (Optional)",
     color: "bg-orange-500",
@@ -70,7 +84,7 @@ const steps = [
     tip: "A logo makes the app feel like your own and helps staff recognize it instantly on shared devices."
   },
   {
-    number: "5",
+    number: "6",
     icon: Tablet,
     title: "Go Live on Your Devices",
     color: "bg-teal-600",
@@ -88,7 +102,7 @@ const steps = [
     tip: "Bookmark the website on each device so staff can open it with one tap."
   },
   {
-    number: "6",
+    number: "7",
     icon: Timer,
     title: "Using the Timer",
     color: "bg-rose-600",
@@ -113,7 +127,7 @@ const steps = [
     tip: "The tap-to-reset option is the easiest approach for quick, one-off timings without any math."
   },
   {
-    number: "7",
+    number: "8",
     icon: AlertTriangle,
     title: "Emergency Button",
     color: "bg-red-600",
@@ -128,7 +142,7 @@ const steps = [
     tip: "A siren-style sound is the best choice — staff will instantly know an emergency alert is different from a normal call, even without looking at the screen."
   },
   {
-    number: "8",
+    number: "9",
     icon: BatteryCharging,
     title: "Tablet Care & Mounting",
     color: "bg-indigo-600",
