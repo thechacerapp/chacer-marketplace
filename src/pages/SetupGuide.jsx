@@ -167,7 +167,7 @@ const steps = [
         "A simple mechanical timer outlet works too — set it to charge for 3–4 hours overnight and cut off automatically."
       ]
     },
-    tip: "3M Command velcro strips are ideal for mounting tablets — no holes, no damage to walls, and easy to move if you rearrange rooms."
+    tip: "3M Command velcro strips are ideal for mounting tablets — no holes, no damage to walls, and easy to move if you rearrange rooms. If you need to use the tablet while gloved, loosely apply a barrier film over the screen before the visit (leave the top and bottom edges loose for easy removal) — the tablet can then be used with gloves on during procedures."
   }
 ];
 
