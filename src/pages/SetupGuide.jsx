@@ -161,9 +161,9 @@ const steps = [
       title: "Smart Charging Solutions",
       items: [
         "Never leave tablets plugged in 24/7 — constant charging causes battery swelling and significantly shortens lifespan. The goal is to keep the battery between 20% and 80%.",
+        "Android Built-In Option: Many Android tablets have a built-in charging protection feature. Go to Settings → Battery → Charge Optimization, then turn on Charging Protection. This automatically limits charging to protect the battery long-term.",
         "Smart Plug + Automation: Use a Kasa Smart Plug or Sonoff S31 paired with Alexa or Home Assistant to automatically turn charging on and off on a schedule.",
         "Dedicated Timer: The Charge-O-Matic is designed specifically for this — set exact on/off hours to prevent overcharging without any smart home setup.",
-        "Software Option (Android): Fully Kiosk Browser can monitor battery level and trigger a smart plug via Home Assistant to stop charging at a set percentage.",
         "In-Wall Option: Lumary Smart Outlets or Bseed USB wall plates with built-in smart functionality offer a clean, permanent solution.",
         "A simple mechanical timer outlet works too — set it to charge for 3–4 hours overnight and cut off automatically."
       ]
