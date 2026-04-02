@@ -152,7 +152,6 @@ const steps = [
       "Do not leave tablets plugged in and charging 24/7 — this degrades the battery over time. Use a timer outlet or smart plug to limit charging to a few hours per night.",
       "Set screen brightness to a moderate level (around 50–70%) to reduce battery drain and extend screen life.",
       "Set the screen timeout to a long interval (or never) so the app stays visible without staff needing to tap to wake it.",
-      "Enable Guided Access (iOS) or Kiosk Mode (Android) to lock the tablet to the Chacer app — this prevents staff from accidentally navigating away.",
       "Use Wi-Fi only mode and disable cellular data if the tablet supports it, to conserve battery.",
       "Schedule software updates to run overnight so they never interrupt the workday.",
       "For wall mounting, we strongly recommend 3M Command Strips (velcro-style hangers). They hold tablets securely, require no drilling, and make it easy to remove or reposition the tablet whenever needed."
