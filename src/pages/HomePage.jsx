@@ -4,6 +4,7 @@ import HeroSection from "@/components/home/HeroSection";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import CTASection from "@/components/home/CTASection";
+import MoreInfoSection from "@/components/home/MoreInfoSection";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <FeaturesSection />
       <HowItWorksSection />
       <CTASection />
+      <MoreInfoSection />
       </main>
     </div>
   );
