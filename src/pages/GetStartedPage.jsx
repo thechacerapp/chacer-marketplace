@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CheckCircle, Loader2, BadgeCheck } from "lucide-react";
 
 export default function GetStartedPage() {
+  const navigate = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
   const billingFromUrl = urlParams.get("billing") || "monthly";
 
@@ -170,6 +172,9 @@ export default function GetStartedPage() {
 
             <Button type="submit" disabled={loading} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold h-12">
               {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Continue to Payment →"}
+            </Button>
+            <Button type="button" variant="outline" className="w-full h-11" onClick={() => navigate("/")}>
+              Cancel
             </Button>
           </form>
 
