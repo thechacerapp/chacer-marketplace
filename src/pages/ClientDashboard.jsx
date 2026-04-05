@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { ExternalLink, CreditCard, CheckCircle, Clock, XCircle, Loader2, Bell, BookOpen } from "lucide-react";
+import { ExternalLink, CreditCard, CheckCircle, Clock, XCircle, Loader2, Bell, BookOpen, AlertTriangle } from "lucide-react";
 
 const statusColors = {
   active: "bg-green-100 text-green-700",
@@ -29,6 +29,9 @@ export default function ClientDashboard() {
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
   const [portalLoading, setPortalLoading] = useState(false);
+  const [cancelLoading, setCancelLoading] = useState(false);
+  const [cancelConfirm, setCancelConfirm] = useState(false);
+  const [cancelResult, setCancelResult] = useState(null);
 
   useEffect(() => {
     loadData();
@@ -46,6 +49,20 @@ export default function ClientDashboard() {
       if (subs.length > 0) setSubscription(subs[0]);
     }
     setLoading(false);
+  };
+
+  const handleCancelSubscription = async () => {
+    setCancelLoading(true);
+    const response = await base44.functions.invoke("cancelStripeSubscription", {
+      stripe_subscription_id: subscription?.stripe_subscription_id,
+      office_id: office?.id
+    });
+    setCancelLoading(false);
+    setCancelConfirm(false);
+    if (response.data?.success) {
+      setCancelResult(response.data.access_until);
+      await loadData();
+    }
   };
 
   const openBillingPortal = async () => {
@@ -149,15 +166,7 @@ export default function ClientDashboard() {
                       <span className="font-medium text-gray-900">${subscription.amount}/mo</span>
                     </div>
                   )}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={openBillingPortal}
-                    disabled={portalLoading || !office?.stripe_customer_id}
-                    className="w-full mt-2"
-                  >
-                    {portalLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><CreditCard className="w-4 h-4 mr-2" /> Manage Billing</>}
-                  </Button>
+
                 </>
               ) : (
                 <p className="text-gray-400">No active subscription found.</p>
@@ -165,6 +174,84 @@ export default function ClientDashboard() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Manage Subscription */}
+        {subscription && subscription.status !== 'canceled' && (
+          <Card className="mb-6 border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-base font-semibold">Manage Subscription</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm">
+              {cancelResult ? (
+                <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-green-700">
+                  <CheckCircle className="w-5 h-5 mb-1" />
+                  <p className="font-semibold">Subscription Cancelled</p>
+                  <p className="text-sm mt-1">Your Chacer app will remain fully active until <strong>{cancelResult}</strong>. After that date, your access will end.</p>
+                </div>
+              ) : (
+                <>
+                  <div className="text-gray-500 space-y-1">
+                    <p>
+                      Current plan: <span className="font-semibold text-gray-800">{subscription.plan_type}</span>
+                      {subscription.status === 'trialing' && subscription.trial_end && (
+                        <span className="ml-2 text-blue-600">(Trial ends {new Date(subscription.trial_end).toLocaleDateString()})</span>
+                      )}
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      {subscription.billing_interval === 'annual'
+                        ? "If you cancel, your app will stay active through the end of your paid year."
+                        : subscription.status === 'trialing'
+                        ? "If you cancel during your trial, your access will end immediately with no charge."
+                        : "If you cancel, your app will stay active through the end of your current month."}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={openBillingPortal}
+                      disabled={portalLoading || !office?.stripe_customer_id}
+                      className="flex-1"
+                    >
+                      {portalLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><CreditCard className="w-4 h-4 mr-2" /> Change Plan / Manage Billing</>}
+                    </Button>
+
+                    {!cancelConfirm ? (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 text-red-600 border-red-200 hover:bg-red-50"
+                        onClick={() => setCancelConfirm(true)}
+                      >
+                        <XCircle className="w-4 h-4 mr-2" /> Cancel Subscription
+                      </Button>
+                    ) : (
+                      <div className="flex-1 bg-red-50 border border-red-200 rounded-lg p-3 space-y-2">
+                        <div className="flex items-start gap-2 text-red-700">
+                          <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                          <p className="text-xs">
+                            Are you sure? {subscription.billing_interval === 'annual'
+                              ? "You'll keep access until the end of your paid year."
+                              : subscription.status === 'trialing'
+                              ? "Your access will end immediately with no charge."
+                              : "You'll keep access until the end of your current billing month."}
+                          </p>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline" className="flex-1 text-xs" onClick={() => setCancelConfirm(false)}>Keep Plan</Button>
+                          <Button size="sm" className="flex-1 text-xs bg-red-600 hover:bg-red-700 text-white" onClick={handleCancelSubscription} disabled={cancelLoading}>
+                            {cancelLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : "Yes, Cancel"}
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Setup Guide */}
         <Card className="mb-6 border-blue-100 bg-blue-50">
