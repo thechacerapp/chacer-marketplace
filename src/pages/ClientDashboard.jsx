@@ -41,9 +41,16 @@ export default function ClientDashboard() {
     const me = await base44.auth.me();
     setUser(me);
 
-    const offices = await base44.entities.Office.filter({ created_by: me.email });
-    if (offices.length > 0) {
-      const o = offices[0];
+    // Try multiple ways to find the office
+    let officeList = await base44.entities.Office.filter({ created_by: me.email });
+    if (officeList.length === 0) {
+      officeList = await base44.entities.Office.filter({ contact_email: me.email });
+    }
+    if (officeList.length === 0) {
+      officeList = await base44.entities.Office.filter({ admin_user_id: me.id });
+    }
+    if (officeList.length > 0) {
+      const o = officeList[0];
       setOffice(o);
       const subs = await base44.entities.Subscription.filter({ office_id: o.id });
       if (subs.length > 0) setSubscription(subs[0]);
