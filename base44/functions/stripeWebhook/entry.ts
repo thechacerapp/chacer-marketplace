@@ -74,6 +74,31 @@ Deno.serve(async (req) => {
         status: "active",
         stripe_customer_id: customerId
       });
+
+      // Send welcome email to the new customer
+      await base44.asServiceRole.integrations.Core.SendEmail({
+        to: email,
+        from_name: "Chacer",
+        subject: "Welcome to Chacer — Your App is Ready to Set Up!",
+        body: `Hi ${office_name},
+
+Welcome to Chacer! Your account has been created and your app is ready for you to set up.
+
+Here's what to do next:
+
+1. Set up your app — follow our step-by-step setup guide to get your rooms, team members, and call reasons configured:
+   https://thechacer.com/setupguide
+
+2. Access your dashboard — manage your subscription and find your Chacer app link here:
+   https://thechacer.com/clientdashboard
+
+Your 10-day free trial has started. You won't be charged until the trial ends, and you can cancel anytime with no charge during the trial period.
+
+If you have any questions, just reply to this email — we're happy to help.
+
+Welcome aboard!
+The Chacer Team`
+      });
     }
 
     if (event.type === "customer.subscription.updated" || event.type === "customer.subscription.deleted") {
