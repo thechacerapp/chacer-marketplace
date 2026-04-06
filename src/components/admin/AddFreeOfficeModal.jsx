@@ -13,8 +13,6 @@ export default function AddFreeOfficeModal({ open, onClose, onSaved }) {
     contact_email: "",
     contact_phone: "",
     office_type: "",
-    chacer_app_url: "",
-    chacer_app_id: "",
   });
   const [trialDays, setTrialDays] = useState(30);
   const [saving, setSaving] = useState(false);
@@ -52,7 +50,7 @@ export default function AddFreeOfficeModal({ open, onClose, onSaved }) {
 
     setSaving(false);
     // Reset form
-    setForm({ name: "", contact_email: "", contact_phone: "", office_type: "", chacer_app_url: "", chacer_app_id: "" });
+    setForm({ name: "", contact_email: "", contact_phone: "", office_type: "" });
     setTrialDays(30);
     onSaved();
     onClose();
@@ -91,14 +89,6 @@ export default function AddFreeOfficeModal({ open, onClose, onSaved }) {
                 ))}
               </SelectContent>
             </Select>
-          </div>
-          <div>
-            <Label>Chacer App URL</Label>
-            <Input className="mt-1" placeholder="https://..." value={form.chacer_app_url} onChange={e => setForm({ ...form, chacer_app_url: e.target.value })} />
-          </div>
-          <div>
-            <Label>Chacer App ID</Label>
-            <Input className="mt-1" placeholder="App instance ID" value={form.chacer_app_id} onChange={e => setForm({ ...form, chacer_app_id: e.target.value })} />
           </div>
           <div>
             <Label>Free Trial Duration (days)</Label>
