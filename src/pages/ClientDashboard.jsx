@@ -282,25 +282,45 @@ export default function ClientDashboard() {
             <CardTitle className="text-base font-semibold">Your Chacer App</CardTitle>
           </CardHeader>
           <CardContent>
-            {office.chacer_app_url ? (
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-500 mb-1">Your dedicated Chacer instance is ready.</p>
-                  <p className="text-xs text-gray-400 font-mono">{office.chacer_app_url}</p>
+            {(() => {
+              const isAccessAllowed = ["active", "trialing"].includes(subscription?.status) && office.status !== "suspended" && office.status !== "cancelled";
+              if (!isAccessAllowed) {
+                return (
+                  <div className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-lg p-4">
+                    <XCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-red-700">Access Suspended</p>
+                      <p className="text-xs text-red-500 mt-0.5">Your subscription is no longer active. Please renew to regain access to your Chacer app.</p>
+                    </div>
+                    <Button size="sm" className="ml-auto bg-blue-600 hover:bg-blue-700 text-white" onClick={() => window.location.href = "/get-started"}>
+                      Resubscribe
+                    </Button>
+                  </div>
+                );
+              }
+              if (office.chacer_app_url) {
+                return (
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-500 mb-1">Your dedicated Chacer instance is ready.</p>
+                      <p className="text-xs text-gray-400 font-mono">{office.chacer_app_url}</p>
+                    </div>
+                    <Button
+                      onClick={() => window.open(office.chacer_app_url, "_blank")}
+                      className="bg-blue-600 hover:bg-blue-700 text-white ml-4"
+                    >
+                      Open App <ExternalLink className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                );
+              }
+              return (
+                <div className="text-sm text-gray-500 flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
+                  Your Chacer app is being provisioned. This usually takes a few minutes after payment confirmation.
                 </div>
-                <Button
-                  onClick={() => window.open(office.chacer_app_url, "_blank")}
-                  className="bg-blue-600 hover:bg-blue-700 text-white ml-4"
-                >
-                  Open App <ExternalLink className="ml-2 w-4 h-4" />
-                </Button>
-              </div>
-            ) : (
-              <div className="text-sm text-gray-500 flex items-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
-                Your Chacer app is being provisioned. This usually takes a few minutes after payment confirmation.
-              </div>
-            )}
+              );
+            })()}
           </CardContent>
         </Card>
       </div>
