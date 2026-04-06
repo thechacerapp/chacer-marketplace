@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Loader2, Search, Users, CreditCard, TrendingUp, Building2, ExternalLink } from "lucide-react";
-import { createPageUrl } from "@/utils";
+import { Loader2, Search, Users, CreditCard, TrendingUp, Building2, ExternalLink, Plus, Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
+import OfficeEditDrawer from "@/components/admin/OfficeEditDrawer";
+import AddFreeOfficeModal from "@/components/admin/AddFreeOfficeModal";
 
 const statusColors = {
   active: "bg-green-100 text-green-700",
@@ -25,6 +26,8 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [unauthorized, setUnauthorized] = useState(false);
+  const [editingOffice, setEditingOffice] = useState(null);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     init();
@@ -88,6 +91,9 @@ export default function AdminDashboard() {
             <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
             <p className="text-gray-500 mt-1">Manage all Chacer offices and subscriptions</p>
           </div>
+          <Button onClick={() => setShowAddModal(true)} className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Plus className="w-4 h-4 mr-2" /> Add Free Trial Office
+          </Button>
         </div>
 
         {/* Stats */}
@@ -136,12 +142,13 @@ export default function AdminDashboard() {
                   <TableHead>Status</TableHead>
                   <TableHead>Trial Ends</TableHead>
                   <TableHead>App</TableHead>
+                  <TableHead></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredOffices.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center text-gray-400 py-10">No offices found</TableCell>
+                    <TableCell colSpan={7} className="text-center text-gray-400 py-10">No offices found</TableCell>
                   </TableRow>
                 ) : filteredOffices.map(office => {
                   const sub = getSubscription(office.id);
@@ -173,6 +180,11 @@ export default function AdminDashboard() {
                           <span className="text-xs text-gray-400">Not provisioned</span>
                         )}
                       </TableCell>
+                      <TableCell>
+                        <Button size="sm" variant="ghost" onClick={() => setEditingOffice(office)}>
+                          <Pencil className="w-4 h-4 text-gray-400" />
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -181,6 +193,22 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
       </div>
+
+      <AddFreeOfficeModal
+        open={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSaved={init}
+      />
+
+      {editingOffice && (
+        <OfficeEditDrawer
+          office={editingOffice}
+          subscription={getSubscription(editingOffice.id)}
+          open={!!editingOffice}
+          onClose={() => setEditingOffice(null)}
+          onSaved={init}
+        />
+      )}
     </div>
   );
 }
