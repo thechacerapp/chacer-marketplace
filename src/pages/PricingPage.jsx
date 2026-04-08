@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, Clock } from "lucide-react";
 
 const features = [
   "Up to 30 call buttons / devices",
@@ -15,6 +13,12 @@ const features = [
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gray-50" role="main">
+      {/* Coming Soon Banner */}
+      <div className="bg-yellow-400 text-yellow-900 text-center py-3 px-4 font-semibold text-sm flex items-center justify-center gap-2">
+        <Clock className="w-4 h-4" />
+        Online payments are coming soon — please contact us directly to get started.
+      </div>
+
       <div className="max-w-4xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h1>
@@ -30,11 +34,9 @@ export default function PricingPage() {
               <span className="text-5xl font-extrabold text-gray-900">$49</span>
               <span className="text-sm ml-1 text-gray-400">/mo</span>
             </div>
-            <Link to={`${createPageUrl("GetStartedPage")}?plan=Monthly&billing=monthly`} className="mb-8" aria-label="Start free trial with Monthly plan">
-              <Button size="lg" className="w-full font-semibold bg-blue-600 hover:bg-blue-700 text-white">
-                Start Free Trial <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
-              </Button>
-            </Link>
+            <Button size="lg" className="w-full font-semibold mb-8" disabled>
+              Coming Soon
+            </Button>
             <ul className="space-y-3 mt-auto">
               {features.map(f => (
                 <li key={f} className="flex items-start gap-2 text-sm">
@@ -55,11 +57,9 @@ export default function PricingPage() {
               <span className="text-sm ml-1 text-blue-200">/yr</span>
             </div>
             <p className="text-blue-300 text-sm mb-6">~$39/mo — save $118 vs monthly</p>
-            <Link to={`${createPageUrl("GetStartedPage")}?plan=Annual&billing=annual`} className="mb-8" aria-label="Start free trial with Annual plan">
-              <Button size="lg" className="w-full font-semibold bg-white text-blue-900 hover:bg-blue-50">
-                Start Free Trial <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
-              </Button>
-            </Link>
+            <Button size="lg" className="w-full font-semibold bg-white text-blue-900 mb-8" disabled>
+              Coming Soon
+            </Button>
             <ul className="space-y-3 mt-auto">
               {features.map(f => (
                 <li key={f} className="flex items-start gap-2 text-sm">
