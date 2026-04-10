@@ -157,10 +157,14 @@ const steps = [
       "For wall mounting, we strongly recommend 3M Command Strips (velcro-style hangers). They hold tablets securely, require no drilling, and make it easy to remove or reposition the tablet whenever needed."
     ],
     subSection: {
-      title: "Smart Charging Solutions",
+      title: "Smart Charging Solutions & Battery Saver Settings",
       items: [
         "Never leave tablets plugged in 24/7 — constant charging causes battery swelling and significantly shortens lifespan. The goal is to keep the battery between 20% and 80%.",
         "Android Built-In Option: Many Android tablets have a built-in charging protection feature. Go to Settings → Battery → Charge Optimization, then turn on Charging Protection. This automatically limits charging to protect the battery long-term.",
+        "Enable Battery Saver Mode: On Android, go to Settings → Battery → Battery Saver and turn it on (or set it to activate automatically below 20%). On iPad, go to Settings → Battery and enable Low Power Mode. This reduces background activity and extends daily battery life.",
+        "Reduce Screen Brightness: Lowering brightness to 40–60% is one of the biggest battery savers. Go to Settings → Display → Brightness on both Android and iPad.",
+        "Disable Wi-Fi Scanning & Bluetooth when not needed: Go to Settings → Connections and turn off Bluetooth if unused. On Android, go to Settings → Location → Improve Accuracy and disable Wi-Fi and Bluetooth scanning.",
+        "Turn Off Background App Refresh: On iPad, go to Settings → General → Background App Refresh and set it to Off or Wi-Fi only. On Android, go to Settings → Apps → (select app) → Battery → Restrict background activity.",
         "Smart Plug + Automation: Use a Kasa Smart Plug or Sonoff S31 paired with Alexa or Home Assistant to automatically turn charging on and off on a schedule.",
         "Dedicated Timer: The Charge-O-Matic is designed specifically for this — set exact on/off hours to prevent overcharging without any smart home setup.",
         "In-Wall Option: Lumary Smart Outlets or Bseed USB wall plates with built-in smart functionality offer a clean, permanent solution.",
@@ -168,6 +172,34 @@ const steps = [
       ]
     },
     tip: "3M Command velcro strips are ideal for mounting tablets — no holes, no damage to walls, and easy to move if you rearrange rooms. If you need to use the tablet while gloved, loosely apply a barrier film over the screen before the visit (leave the top and bottom edges loose for easy removal) — the tablet can then be used with gloves on during procedures."
+  },
+  {
+    number: "10",
+    icon: AlertTriangle,
+    title: "Troubleshooting: Not Receiving or Sending Pages",
+    color: "bg-yellow-600",
+    intro: "If pages (calls/alerts) are not being sent or received on a device, there are two common causes: no internet connection or no room selected. Work through the steps below to identify and fix the issue.",
+    instructions: [
+      "Check Internet Connection: Make sure the tablet or device is connected to Wi-Fi. Open a browser and try loading any website. If it doesn't load, reconnect to your Wi-Fi network in Settings → Wi-Fi.",
+      "Restart Wi-Fi if needed: Toggle Wi-Fi off and back on in the device's Settings, then reconnect to your office network.",
+      "Check that the app is open and visible on the screen — the device must be active (not asleep or locked) to receive pages.",
+      "Make sure a Room is selected: Open the Chacer app and look for a room name displayed on the screen. If no room is shown or it says 'Select Room', tap it and choose the correct room for that device.",
+      "Every device must have a room assigned — without a room selected, the device cannot send or receive calls.",
+      "If the issue persists, close the app completely and reopen it, then verify the room is still selected.",
+      "Restart the device if none of the above steps work — a full reboot often resolves connectivity or app state issues.",
+      "If you are still having trouble after trying all of these steps, contact Chacer support and we will help you resolve it."
+    ],
+    subSection: {
+      title: "Quick Checklist",
+      items: [
+        "✅ Device is connected to Wi-Fi and internet is working",
+        "✅ Chacer app is open and the screen is not asleep",
+        "✅ A room name is selected in the app",
+        "✅ Volume is turned up on the receiving device",
+        "✅ The correct team member or group is assigned to receive calls"
+      ]
+    },
+    tip: "The two most common issues are: (1) the device lost its Wi-Fi connection, or (2) the room was never selected or got reset. Always check these two things first."
   }
 ];
 
