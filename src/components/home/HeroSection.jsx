@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
-import { Bell, ArrowRight, CheckCircle } from "lucide-react";
+import { Bell, ArrowRight, CheckCircle, LogIn } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -11,6 +11,13 @@ export default function HeroSection() {
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-indigo-400 blur-3xl" />
       </div>
       <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-36 text-center">
+        <div className="absolute top-4 right-6">
+          <Link to={createPageUrl("ClientDashboard")}>
+            <Button size="sm" variant="outline" className="border-white/40 text-white hover:bg-white hover:text-blue-900 bg-white/10 gap-2">
+              <LogIn className="w-4 h-4" /> Client Login
+            </Button>
+          </Link>
+        </div>
         <div className="inline-flex items-center gap-2 bg-blue-700/50 border border-blue-500/50 rounded-full px-4 py-1.5 text-sm text-blue-200 mb-8">
           <Bell className="w-4 h-4" aria-hidden="true" />
           Smart In-Office Call Buttons
