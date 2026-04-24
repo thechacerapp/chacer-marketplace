@@ -60,7 +60,9 @@ Deno.serve(async (req) => {
           body: JSON.stringify(payload)
         });
 
-        if (!res.ok) {
+        if (res.status === 404) {
+          errors.push({ office: office.name, error: `User not yet registered on ChacerApp (${office.contact_email})` });
+        } else if (!res.ok) {
           const text = await res.text();
           errors.push({ office: office.name, error: `HTTP ${res.status}: ${text}` });
         } else {
