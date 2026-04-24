@@ -44,6 +44,7 @@ Deno.serve(async (req) => {
           stripe_subscription_id: sub?.stripe_subscription_id || '',
           plan: sub?.plan_type || '',
           status: sub?.status || office.status,
+          subscription_status: sub?.status || office.status,
           trial_end: sub?.trial_end || '',
           subscription_end_date: sub?.ends_on_date || '',
           chacer_app_url: office.chacer_app_url || '',
