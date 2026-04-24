@@ -2,7 +2,7 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
 
 const SYNC_SECRET = Deno.env.get('SYNC_SECRET');
 // This is the syncSubscriptionStatus function URL on thechacerapp — find it at Dashboard → Code → Functions
-const CHACER_SYNC_URL = Deno.env.get('CHACER_SYNC_URL');
+const CHACER_SYNC_URL = Deno.env.get('CHACER_SYNC_URL'); // v2
 
 Deno.serve(async (req) => {
   try {
