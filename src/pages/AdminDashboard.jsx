@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Loader2, Search, Users, CreditCard, TrendingUp, Building2, ExternalLink, Plus, Pencil } from "lucide-react";
+import { Loader2, Search, Users, CreditCard, TrendingUp, Building2, ExternalLink, Plus, Pencil, RefreshCw } from "lucide-react";
 import { Link } from "react-router-dom";
 import OfficeEditDrawer from "@/components/admin/OfficeEditDrawer";
 import AddFreeOfficeModal from "@/components/admin/AddFreeOfficeModal";
@@ -28,6 +28,8 @@ export default function AdminDashboard() {
   const [unauthorized, setUnauthorized] = useState(false);
   const [editingOffice, setEditingOffice] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [syncing, setSyncing] = useState(false);
+  const [syncResult, setSyncResult] = useState(null);
 
   useEffect(() => {
     init();
@@ -51,6 +53,14 @@ export default function AdminDashboard() {
   };
 
   const getSubscription = (officeId) => subscriptions.find(s => s.office_id === officeId);
+
+  const handleSyncToChacerApp = async () => {
+    setSyncing(true);
+    setSyncResult(null);
+    const res = await base44.functions.invoke('pushAllOfficesToChacer', {});
+    setSyncing(false);
+    setSyncResult(res.data);
+  };
 
   const filteredOffices = offices.filter(o =>
     o.name?.toLowerCase().includes(search.toLowerCase()) ||
@@ -91,10 +101,26 @@ export default function AdminDashboard() {
             <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
             <p className="text-gray-500 mt-1">Manage all Chacer offices and subscriptions</p>
           </div>
-          <Button onClick={() => setShowAddModal(true)} className="bg-blue-600 hover:bg-blue-700 text-white">
-            <Plus className="w-4 h-4 mr-2" /> Add Free Trial Office
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button onClick={() => setShowAddModal(true)} className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Plus className="w-4 h-4 mr-2" /> Add Free Trial Office
+            </Button>
+            <Button onClick={handleSyncToChacerApp} disabled={syncing} variant="outline" className="border-indigo-300 text-indigo-700 hover:bg-indigo-50">
+              {syncing ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <RefreshCw className="w-4 h-4 mr-2" />}
+              Sync to ChacerApp
+            </Button>
+          </div>
         </div>
+
+        {/* Sync result */}
+        {syncResult && (
+          <div className={`mb-6 px-4 py-3 rounded-lg text-sm flex items-center gap-3 ${syncResult.ok ? 'bg-green-50 border border-green-200 text-green-700' : 'bg-red-50 border border-red-200 text-red-700'}`}>
+            {syncResult.ok
+              ? `✅ Synced ${syncResult.total} offices to ChacerApp — ${syncResult.created} created, ${syncResult.updated} updated${syncResult.errors?.length ? ` (${syncResult.errors.length} errors)` : ''}`
+              : `❌ Sync failed: ${syncResult.error}`}
+            <button onClick={() => setSyncResult(null)} className="ml-auto text-gray-400 hover:text-gray-600">✕</button>
+          </div>
+        )}
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -197,7 +223,7 @@ export default function AdminDashboard() {
       <AddFreeOfficeModal
         open={showAddModal}
         onClose={() => setShowAddModal(false)}
-        onSaved={init}
+        onSaved={() => { init(); handleSyncToChacerApp(); }}
       />
 
       {editingOffice && (
@@ -206,7 +232,7 @@ export default function AdminDashboard() {
           subscription={getSubscription(editingOffice.id)}
           open={!!editingOffice}
           onClose={() => setEditingOffice(null)}
-          onSaved={init}
+          onSaved={() => { init(); handleSyncToChacerApp(); }}
         />
       )}
     </div>
