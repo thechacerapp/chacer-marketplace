@@ -20,6 +20,12 @@ Deno.serve(async (req) => {
       return Response.json({ error: `Unknown plan: ${plan}` }, { status: 400 });
     }
 
+    // Block duplicate signups — check if an office with this email already exists
+    const existingOffices = await base44.asServiceRole.entities.Office.filter({ contact_email: email });
+    if (existingOffices.length > 0) {
+      return Response.json({ error: `An account already exists for ${email}. Please log in to your Client Dashboard instead.` }, { status: 409 });
+    }
+
     const rawAppUrl = Deno.env.get("BASE44_APP_URL") || "";
     const appUrl = rawAppUrl.startsWith("http") ? rawAppUrl.replace(/\/$/, "") : `https://${rawAppUrl.replace(/\/$/, "")}`;
 

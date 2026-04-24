@@ -50,6 +50,9 @@ export default function GetStartedPage() {
 
       if (response.data?.url) {
         window.open(response.data.url, "_blank");
+      } else if (response.status === 409 || response.data?.error?.includes("already exists")) {
+        setError(response.data?.error || "An account with this email already exists.");
+        setLoading(false);
       } else {
         setError(response.data?.error || "Could not initiate payment. Please try again.");
         setLoading(false);
