@@ -36,7 +36,7 @@ export default function NeedHelpButton() {
         onClick={() => setOpen(true)}
         className="border-white/40 text-white hover:bg-white hover:text-blue-900 bg-white/10 gap-2"
       >
-        <HelpCircle className="w-4 h-4" /> Need Help?
+        <HelpCircle className="w-4 h-4" /> Need Help? Contact Us
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>
