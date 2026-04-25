@@ -13,11 +13,10 @@ export default function NeedHelpButton() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    await base44.integrations.Core.SendEmail({
-      to: "admin@thechacerapp.com",
-      from_name: "Chacer Website",
-      subject: `Contact Request from ${form.name}`,
-      body: `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
+    await base44.functions.invoke("sendContactEmail", {
+      name: form.name,
+      email: form.email,
+      message: form.message,
     });
     setSending(false);
     setSent(true);
