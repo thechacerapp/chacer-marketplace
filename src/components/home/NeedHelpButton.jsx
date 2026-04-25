@@ -13,7 +13,7 @@ export default function NeedHelpButton() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    await base44.entities.ContactMessage.create({
+    await base44.functions.invoke("sendContactEmail", {
       name: form.name,
       email: form.email,
       message: form.message,
