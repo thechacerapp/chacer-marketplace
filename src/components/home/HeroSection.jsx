@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
-import { Bell, ArrowRight, CheckCircle, LogIn } from "lucide-react";
+import { Bell, ArrowRight, CheckCircle, LogIn, ChevronDown } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import NeedHelpButton from "@/components/home/NeedHelpButton";
 
 export default function HeroSection() {
   return (
@@ -11,12 +13,23 @@ export default function HeroSection() {
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-indigo-400 blur-3xl" />
       </div>
       <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-36 text-center">
-        <div className="absolute top-4 right-6">
-          <Link to={createPageUrl("ClientDashboard")}>
-            <Button size="sm" variant="outline" className="border-white/40 text-white hover:bg-white hover:text-blue-900 bg-white/10 gap-2">
-              <LogIn className="w-4 h-4" /> Client Login
-            </Button>
-          </Link>
+        <div className="absolute top-4 right-6 flex items-center gap-2">
+          <NeedHelpButton />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button size="sm" variant="outline" className="border-white/40 text-white hover:bg-white hover:text-blue-900 bg-white/10 gap-2">
+                <LogIn className="w-4 h-4" /> Login <ChevronDown className="w-3 h-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-52">
+              <DropdownMenuItem asChild>
+                <Link to="/ClientDashboard" className="cursor-pointer">Manage my account</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="https://www.thechacerapp.com" target="_blank" rel="noopener noreferrer" className="cursor-pointer">Login to my app</a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         <div className="inline-flex items-center gap-2 bg-blue-700/50 border border-blue-500/50 rounded-full px-4 py-1.5 text-sm text-blue-200 mb-8">
           <Bell className="w-4 h-4" aria-hidden="true" />
