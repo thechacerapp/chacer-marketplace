@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { ExternalLink, CreditCard, CheckCircle, Clock, XCircle, Loader2, Bell, BookOpen, AlertTriangle } from "lucide-react";
+import ContactButton from "@/components/ContactButton";
 
 const statusColors = {
   active: "bg-green-100 text-green-700",
@@ -324,6 +325,7 @@ export default function ClientDashboard() {
           </CardContent>
         </Card>
       </div>
+      <ContactButton />
     </div>
   );
 }

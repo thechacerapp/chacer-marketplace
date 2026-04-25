@@ -1,5 +1,6 @@
 import { CheckCircle, Monitor, Users, MessageSquare, Image, ChevronRight, Tablet, Timer, AlertTriangle, BatteryCharging, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ContactButton from "@/components/ContactButton";
 
 const steps = [
   {
@@ -295,6 +296,7 @@ export default function SetupGuide() {
           </p>
         </div>
       </div>
+      <ContactButton />
     </div>
   );
 }

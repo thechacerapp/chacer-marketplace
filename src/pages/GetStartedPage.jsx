@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ContactButton from "@/components/ContactButton";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -184,6 +185,7 @@ export default function GetStartedPage() {
           <p className="text-xs text-gray-400 text-center mt-4">You'll be redirected to Stripe's secure checkout. No charge during your 10-day trial.</p>
         </div>
       </div>
+      <ContactButton />
     </div>
   );
 }

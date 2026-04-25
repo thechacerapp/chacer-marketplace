@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
+import ContactButton from "@/components/ContactButton";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
@@ -24,6 +25,7 @@ export default function HomePage() {
           <Link to="/PrivacyPolicy" className="hover:text-blue-600 underline underline-offset-2">Privacy Policy</Link>
         </div>
       </footer>
+      <ContactButton />
     </div>
   );
 }

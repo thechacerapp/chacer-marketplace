@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Clock } from "lucide-react";
+import ContactButton from "@/components/ContactButton";
 
 const features = [
   "Up to 30 call buttons / devices",
@@ -75,6 +76,7 @@ export default function PricingPage() {
           All plans include a 10-day free trial. Cancel within 10 days for a complete refund — no questions asked.
         </p>
       </div>
+      <ContactButton />
     </div>
   );
 }
