@@ -12,7 +12,7 @@ export default function ContactButton() {
     e.preventDefault();
     setSending(true);
     await base44.integrations.Core.SendEmail({
-      to: "admin@thechacer.com",
+      to: "admin@thechacerapp.com",
       from_name: "Chacer Website",
       subject: `Contact Request from ${form.name}`,
       body: `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
