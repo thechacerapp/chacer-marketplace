@@ -60,16 +60,26 @@ export default function ClientDashboard() {
   };
 
   const handleCancelSubscription = async () => {
+    if (!subscription?.stripe_subscription_id) {
+      alert("Unable to cancel: no Stripe subscription ID found. Please contact support.");
+      setCancelConfirm(false);
+      return;
+    }
     setCancelLoading(true);
-    const response = await base44.functions.invoke("cancelStripeSubscription", {
-      stripe_subscription_id: subscription?.stripe_subscription_id,
-      office_id: office?.id
-    });
-    setCancelLoading(false);
-    setCancelConfirm(false);
-    if (response.data?.success) {
-      setCancelResult(response.data.access_until);
-      await loadData();
+    try {
+      const response = await base44.functions.invoke("cancelStripeSubscription", {
+        stripe_subscription_id: subscription.stripe_subscription_id,
+        office_id: office?.id
+      });
+      if (response.data?.success) {
+        setCancelResult(response.data.access_until);
+        await loadData();
+      }
+    } catch (err) {
+      alert("Cancellation failed. Please contact support at admin@thechacerapp.com.");
+    } finally {
+      setCancelLoading(false);
+      setCancelConfirm(false);
     }
   };
 
