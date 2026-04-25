@@ -12,11 +12,12 @@ export default function GetStartedPage() {
   const navigate = useNavigate();
   const urlParams = new URLSearchParams(window.location.search);
   const billingFromUrl = urlParams.get("billing") || "monthly";
+  const existingOfficeId = urlParams.get("existing_office_id") || null;
 
   const [billing, setBilling] = useState(billingFromUrl === "annual" ? "annual" : "monthly");
   const [form, setForm] = useState({
-    name: "",
-    contact_email: "",
+    name: urlParams.get("name") || "",
+    contact_email: urlParams.get("email") || "",
     contact_phone: "",
     office_type: "",
   });
@@ -46,7 +47,8 @@ export default function GetStartedPage() {
         contact_phone: form.contact_phone,
         plan,
         billing,
-        discount_code: discountCode.trim().toUpperCase() || undefined
+        discount_code: discountCode.trim().toUpperCase() || undefined,
+        ...(existingOfficeId ? { existing_office_id: existingOfficeId } : {})
       });
 
       if (response.data?.url) {
@@ -69,8 +71,8 @@ export default function GetStartedPage() {
       <div className="w-full max-w-lg">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900">Start Your Free Trial</h1>
-            <p className="text-gray-500 mt-2 text-sm">10 days free. Cancel for a full refund within 10 days.</p>
+            <h1 className="text-2xl font-bold text-gray-900">{existingOfficeId ? "Set Up Your Subscription" : "Start Your Free Trial"}</h1>
+            <p className="text-gray-500 mt-2 text-sm">{existingOfficeId ? "Choose a plan to keep your Chacer app active after your trial." : "10 days free. Cancel for a full refund within 10 days."}</p>
           </div>
 
           {/* Plan Selector */}

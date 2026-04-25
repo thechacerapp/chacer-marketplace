@@ -193,8 +193,35 @@ export default function ClientDashboard() {
           </Card>
         </div>
 
+        {/* Subscribe Now — for manual trial offices with no Stripe subscription */}
+        {subscription && subscription.status === 'trialing' && !subscription.stripe_subscription_id && (
+          <Card className="mb-6 border-blue-200 bg-blue-50">
+            <CardContent className="py-5 flex items-center justify-between gap-4">
+              <div>
+                <p className="font-semibold text-gray-900 text-sm">Ready to subscribe?</p>
+                <p className="text-gray-500 text-xs mt-1">
+                  Your trial {subscription.trial_end ? `ends on ${new Date(subscription.trial_end).toLocaleDateString()}` : "is active"}. Set up a payment method to keep your Chacer app running after the trial.
+                </p>
+              </div>
+              <Button
+                className="bg-blue-600 hover:bg-blue-700 text-white whitespace-nowrap"
+                onClick={() => {
+                  const params = new URLSearchParams({
+                    existing_office_id: office.id,
+                    email: office.contact_email,
+                    name: office.name,
+                  });
+                  window.location.href = `/GetStartedPage?${params.toString()}`;
+                }}
+              >
+                <CreditCard className="w-4 h-4 mr-2" /> Subscribe Now
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Manage Subscription */}
-        {subscription && subscription.status !== 'canceled' && (
+        {subscription && subscription.status !== 'canceled' && subscription.stripe_subscription_id && (
           <Card className="mb-6 border-gray-200">
             <CardHeader>
               <CardTitle className="text-base font-semibold">Manage Subscription</CardTitle>

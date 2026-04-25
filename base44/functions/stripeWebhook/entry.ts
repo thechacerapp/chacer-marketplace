@@ -37,27 +37,29 @@ Deno.serve(async (req) => {
       const plan = data.metadata?.plan;
       const subscriptionId = data.subscription;
       const customerId = data.customer;
-      const { office_name, email, office_type, contact_phone } = data.metadata || {};
+      const { office_name, email, office_type, contact_phone, existing_office_id } = data.metadata || {};
 
       if (!subscriptionId) {
         return Response.json({ received: true });
       }
 
-      // Create Office if it doesn't exist
-      let offices = await base44.asServiceRole.entities.Office.filter({ contact_email: email });
-      let officeId;
-      if (offices.length === 0 && office_name && email) {
-        const newOffice = await base44.asServiceRole.entities.Office.create({
-          name: office_name,
-          contact_email: email,
-          office_type: office_type || "General Office",
-          contact_phone: contact_phone || "",
-          stripe_customer_id: customerId,
-          status: "active"
-        });
-        officeId = newOffice.id;
-      } else {
-        officeId = offices[0]?.id;
+      // Find or create the Office record
+      let officeId = existing_office_id || null;
+      if (!officeId) {
+        let offices = await base44.asServiceRole.entities.Office.filter({ contact_email: email });
+        if (offices.length === 0 && office_name && email) {
+          const newOffice = await base44.asServiceRole.entities.Office.create({
+            name: office_name,
+            contact_email: email,
+            office_type: office_type || "General Office",
+            contact_phone: contact_phone || "",
+            stripe_customer_id: customerId,
+            status: "active"
+          });
+          officeId = newOffice.id;
+        } else {
+          officeId = offices[0]?.id;
+        }
       }
 
       if (!officeId) {
@@ -72,8 +74,7 @@ Deno.serve(async (req) => {
         ? new Date(stripeSub.trial_start * 1000).toISOString().split("T")[0]
         : null;
 
-      // Create subscription record
-      await base44.asServiceRole.entities.Subscription.create({
+      const subData = {
         office_id: officeId,
         stripe_subscription_id: subscriptionId,
         stripe_customer_id: customerId,
@@ -84,9 +85,18 @@ Deno.serve(async (req) => {
         trial_end: trialEnd,
         start_date: new Date().toISOString().split("T")[0],
         amount: (stripeSub.items.data[0]?.price?.unit_amount || 0) / 100
-      });
+      };
 
-      // Update office status to active
+      // If this office already has a manual (no-stripe) subscription, update it. Otherwise create new.
+      const existingSubs = await base44.asServiceRole.entities.Subscription.filter({ office_id: officeId });
+      const manualSub = existingSubs.find(s => !s.stripe_subscription_id);
+      if (manualSub) {
+        await base44.asServiceRole.entities.Subscription.update(manualSub.id, subData);
+      } else {
+        await base44.asServiceRole.entities.Subscription.create(subData);
+      }
+
+      // Update office status and stripe customer id
       await base44.asServiceRole.entities.Office.update(officeId, {
         status: "active",
         stripe_customer_id: customerId
