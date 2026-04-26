@@ -13,11 +13,20 @@ export default function NeedHelpButton() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    await base44.functions.invoke("sendContactEmail", {
-      name: form.name,
-      email: form.email,
-      message: form.message,
-    });
+    try {
+      await base44.functions.invoke("sendContactEmail", {
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      });
+    } catch (err) {
+      // Save directly to DB as fallback if function fails
+      await base44.entities.ContactMessage.create({
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      });
+    }
     setSending(false);
     setSent(true);
     setTimeout(() => {
