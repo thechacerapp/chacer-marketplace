@@ -10,6 +10,15 @@ export default function NeedHelpButton() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
+  const handleOpenChange = (val) => {
+    setOpen(val);
+    if (val) {
+      setSending(false);
+      setSent(false);
+      setForm({ name: "", email: "", message: "" });
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -47,7 +56,7 @@ export default function NeedHelpButton() {
         <HelpCircle className="w-4 h-4" /> Need Help? Contact Us
       </Button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Contact Us</DialogTitle>
