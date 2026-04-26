@@ -22,6 +22,7 @@ Deno.serve(async (req) => {
         to: ["admin@thechacerapp.com"],
         subject: `New Contact Message from ${name}`,
         html: `
+          <p style="color:#888;font-size:13px;">Contact form from thechacer.com</p>
           <h2>New Contact Form Submission</h2>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
