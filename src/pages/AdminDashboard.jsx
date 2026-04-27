@@ -198,13 +198,11 @@ export default function AdminDashboard() {
                         {sub?.trial_end ? new Date(sub.trial_end).toLocaleDateString() : "—"}
                       </TableCell>
                       <TableCell>
-                        {office.chacer_app_url ? (
+                        {office.chacer_app_url && (
                           <a href={office.chacer_app_url} target="_blank" rel="noopener noreferrer"
                             className="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 text-sm">
                             Open <ExternalLink className="w-3 h-3" />
                           </a>
-                        ) : (
-                          <span className="text-xs text-gray-400">Not provisioned</span>
                         )}
                       </TableCell>
                       <TableCell>
