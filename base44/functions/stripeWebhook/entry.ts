@@ -114,29 +114,73 @@ Deno.serve(async (req) => {
         trial_end: trialEnd
       });
 
-      // Send welcome email to the new customer
-      await base44.asServiceRole.integrations.Core.SendEmail({
-        to: email,
-        from_name: "Chacer",
-        subject: "Welcome to Chacer — Your App is Ready to Set Up!",
-        body: `Hi ${office_name},
+      // Send welcome email to the new customer via Resend
+      const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+      const firstName = (office_name || "").split(" ")[0] || office_name || "there";
+      const welcomeHtml = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body style="font-family: Arial, sans-serif; font-size: 15px; color: #222; max-width: 620px; margin: 0 auto; padding: 24px;">
 
-Welcome to Chacer! Your account has been created and your app is ready for you to set up.
+  <p>Hi ${firstName},</p>
 
-Here's what to do next:
+  <p>Thank you for signing up for <strong>The Chacer App</strong>!</p>
 
-1. Set up your app — follow our step-by-step setup guide to get your rooms, team members, and call reasons configured:
-   https://thechacer.com/setupguide
+  <p>Please <strong>save this email for future reference</strong>. It includes the important setup information and download file you'll need to get started.</p>
 
-2. Access your dashboard — manage your subscription and find your Chacer app link here:
-   https://thechacer.com/clientdashboard
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
 
-Your 10-day free trial has started. You won't be charged until the trial ends, and you can cancel anytime with no charge during the trial period.
+  <h3 style="color: #1d4ed8;">Step 1: Create Your Account</h3>
+  <p>Go to <strong><a href="https://thechacerapp.com" style="color:#1d4ed8;">thechacerapp.com</a></strong> and create your account using this email address.<br>
+  Set a password that can be shared with the staff who will be setting up your tablets.</p>
 
-If you have any questions, just reply to this email — we're happy to help.
+  <h3 style="color: #1d4ed8;">Step 2: Download the Setup Guide</h3>
+  <p>👉 <strong><a href="https://thechacer.com/SetupGuide" style="color:#1d4ed8;">Click here to view the Setup Guide</a></strong></p>
 
-Welcome aboard!
-The Chacer Team`
+  <h3 style="color: #1d4ed8;">Step 3: Download The Chacer App</h3>
+  <p>👉 <strong><a href="https://drive.google.com/uc?export=download&id=1-ZRSUQvQjIn2cwEB1AH1LVjUUAR-n7jc" style="color:#1d4ed8;">Click here to download the app</a></strong></p>
+
+  <p>The setup guide will walk you through installation and getting everything running smoothly.</p>
+
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
+
+  <h3 style="color: #1d4ed8;">📱 Tablet Quick Setup Checklist</h3>
+  <p>Before going live, make sure each tablet is configured correctly:</p>
+  <ol style="line-height: 2;">
+    <li>Set screen brightness to <strong>79–80%</strong></li>
+    <li>Set <strong>Battery Saver to ON</strong></li>
+    <li>Set an <strong>on/off schedule</strong> if you have a set daily office schedule</li>
+    <li>Set screen timeout to <strong>Never turn off</strong></li>
+  </ol>
+
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
+
+  <p><strong>Note:</strong><br>
+  To manage your account, settings, and billing, visit:<br>
+  👉 <strong><a href="https://thechacer.com/ClientDashboard" style="color:#1d4ed8;">https://thechacer.com</a></strong> (Client Dashboard)</p>
+
+  <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
+
+  <p>Thank you again for choosing <strong>The Chacer App</strong>. We're excited to help your team stay connected and communicate more efficiently.</p>
+
+  <p>Best,<br><strong>The Chacer App Team</strong></p>
+
+</body>
+</html>`;
+
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "The Chacer App <noreply@thechacerapp.com>",
+          to: [email],
+          subject: "Welcome to The Chacer App — Important Setup Info Inside!",
+          html: welcomeHtml,
+        }),
       });
     }
 
