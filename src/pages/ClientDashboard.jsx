@@ -354,8 +354,8 @@ export default function ClientDashboard() {
               }
               return (
                 <div className="text-sm text-gray-500 flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
-                  Your Chacer app is being provisioned. This usually takes a few minutes after payment confirmation.
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  Your Chacer app is ready! Check your email for a login invitation link to access your app.
                 </div>
               );
             })()}
