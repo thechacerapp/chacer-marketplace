@@ -12,7 +12,7 @@ const steps = [
     instructions: [],
     richInstructions: [
       <span>Desktop version: Go to <a href="https://thechacerapp.com" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-600 underline">thechacerapp.com</a> to access the app from any computer or laptop.</span>,
-      <span>Android tablet: Check your email for the install file, or <a href="https://drive.google.com/uc?export=download&id=1-ZRSUQvQjIn2cwEB1AH1LVjUUAR-n7jc" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-600 underline">click here to download the app</a>.</span>,
+      <span>Android tablet — open on the tablet directly: Check your email for the install file, or <a href="https://drive.google.com/uc?export=download&id=1-ZRSUQvQjIn2cwEB1AH1LVjUUAR-n7jc" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-600 underline">click here to download the app</a>.</span>,
       "When you log in for the first time, you will be prompted to set a password — make note of it.",
       "Important: Use the same login and password on every device. This is what keeps all your devices connected and communicating with each other.",
       <span>We recommend completing your initial setup on <a href="https://thechacerapp.com" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-600 underline">thechacerapp.com</a> — it's much easier to configure settings from a computer than on a tablet screen.</span>
