@@ -19,7 +19,7 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({
         from: "Chacer Marketplace <noreply@thechacerapp.com>",
-        to: ["admin@thechacerapp.com"],
+        to: ["support@thechacerapp.com"],
         subject: `New Contact Message from ${name}`,
         html: `
           <p style="color:#888;font-size:13px;">Contact form from thechacer.com</p>
