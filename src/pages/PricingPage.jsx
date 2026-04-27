@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Clock } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import ContactButton from "@/components/ContactButton";
+import { Link } from "react-router-dom";
 
 const features = [
   "Up to 30 call buttons / devices",
@@ -14,12 +15,6 @@ const features = [
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gray-50" role="main">
-      {/* Coming Soon Banner */}
-      <div className="bg-yellow-400 text-yellow-900 text-center py-3 px-4 font-semibold text-sm flex items-center justify-center gap-2">
-        <Clock className="w-4 h-4" />
-        Online payments are coming soon — please contact us directly to get started.
-      </div>
-
       <div className="max-w-4xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h1>
@@ -35,9 +30,11 @@ export default function PricingPage() {
               <span className="text-5xl font-extrabold text-gray-900">$30</span>
               <span className="text-sm ml-1 text-gray-400">/mo</span>
             </div>
-            <Button size="lg" className="w-full font-semibold mb-2" disabled>
-              Coming Soon
-            </Button>
+            <Link to="/GetStartedPage?billing=monthly">
+              <Button size="lg" className="w-full font-semibold mb-2">
+                Start Free Trial
+              </Button>
+            </Link>
             <p className="text-gray-400 text-xs text-center mb-6">Use your office email — it becomes your login for the app.</p>
             <ul className="space-y-3 mt-auto">
               {features.map(f => (
@@ -59,9 +56,11 @@ export default function PricingPage() {
               <span className="text-sm ml-1 text-blue-200">/yr</span>
             </div>
             <p className="text-blue-300 text-sm mb-6">~$25/mo — save $61 vs monthly</p>
-            <Button size="lg" className="w-full font-semibold bg-white text-blue-900 mb-2" disabled>
-              Coming Soon
-            </Button>
+            <Link to="/GetStartedPage?billing=annual">
+              <Button size="lg" className="w-full font-semibold bg-white text-blue-900 mb-2">
+                Start Free Trial
+              </Button>
+            </Link>
             <p className="text-blue-300 text-xs text-center mb-6">Use your office email — it becomes your login for the app.</p>
             <ul className="space-y-3 mt-auto">
               {features.map(f => (
