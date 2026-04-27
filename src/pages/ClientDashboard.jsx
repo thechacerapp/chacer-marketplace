@@ -196,7 +196,7 @@ export default function ClientDashboard() {
                       <span className="font-medium text-gray-900">{new Date(subscription.trial_end).toLocaleDateString()}</span>
                     </div>
                   )}
-                  {subscription.amount && (
+                  {subscription.amount > 0 && (
                     <div className="flex justify-between">
                       <span className="text-gray-500">Billing</span>
                       <span className="font-medium text-gray-900">${subscription.amount}/mo</span>
