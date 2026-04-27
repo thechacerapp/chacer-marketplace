@@ -122,7 +122,7 @@ export default function ClientDashboard() {
           <Bell className="w-12 h-12 text-blue-400 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-gray-900 mb-2">No office found</h2>
           <p className="text-gray-500 mb-6">You don't have an office registered yet.</p>
-          <Button onClick={() => window.location.href = "/get-started"} className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Button onClick={() => window.location.href = "/PricingPage"} className="bg-blue-600 hover:bg-blue-700 text-white">
             Get Started
           </Button>
         </div>
