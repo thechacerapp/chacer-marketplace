@@ -353,9 +353,15 @@ export default function ClientDashboard() {
                 );
               }
               return (
-                <div className="text-sm text-gray-500 flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  Your Chacer app is ready! Check your email for a login invitation link to access your app.
+                <div className="text-sm text-gray-500 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                    <span className="font-medium text-gray-700">Your Chacer app is ready!</span>
+                  </div>
+                  <ul className="list-disc list-inside space-y-1 text-xs text-gray-500 ml-6">
+                    <li><strong>Desktop:</strong> Visit <a href="https://thechacerapp.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">thechacerapp.com</a> to access the desktop version.</li>
+                    <li><strong>Android Tablet:</strong> Check your email for the file to install the app on any Android tablet.</li>
+                  </ul>
                 </div>
               );
             })()}
