@@ -90,6 +90,14 @@ Deno.serve(async (req) => {
     const result = await res.json();
     if (!res.ok) throw new Error(result.message || "Failed to send");
 
+    // Log the email
+    await base44.asServiceRole.entities.EmailLog.create({
+      email: office.contact_email,
+      name: office_name,
+      subject: "Welcome to The Chacer App — Important Setup Info Inside!",
+      type: "welcome"
+    });
+
     return Response.json({ ok: true, sent: true });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });

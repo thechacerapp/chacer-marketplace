@@ -1,0 +1,32 @@
+{
+  "name": "EmailLog",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Email address sent to"
+    },
+    "name": {
+      "type": "string",
+      "description": "Recipient name"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "welcome",
+        "notification",
+        "other"
+      ],
+      "description": "Type of email"
+    }
+  },
+  "required": [
+    "email",
+    "subject",
+    "type"
+  ]
+}

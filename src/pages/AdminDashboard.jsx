@@ -33,15 +33,28 @@ export default function AdminDashboard() {
   const [showMessages, setShowMessages] = useState(false);
   const [messages, setMessages] = useState([]);
   const [messagesLoading, setMessagesLoading] = useState(false);
+  const [messageSearch, setMessageSearch] = useState("");
 
   const loadMessages = async () => {
     if (showMessages) { setShowMessages(false); return; }
     setShowMessages(true);
     setMessagesLoading(true);
-    const msgs = await base44.entities.ContactMessage.list('-created_date', 50);
-    setMessages(msgs);
+    const [msgs, logs] = await Promise.all([
+      base44.entities.ContactMessage.list('-created_date', 50),
+      base44.entities.EmailLog.list('-created_date', 50)
+    ]);
+    const combined = [
+      ...msgs.map(m => ({ ...m, type: 'contact', name: m.name, email: m.email })),
+      ...logs.map(l => ({ ...l, type: 'email', name: l.name, email: l.email }))
+    ].sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
+    setMessages(combined);
     setMessagesLoading(false);
   };
+
+  const filteredMessages = messages.filter(msg =>
+    msg.name?.toLowerCase().includes(messageSearch.toLowerCase()) ||
+    msg.email?.toLowerCase().includes(messageSearch.toLowerCase())
+  );
 
   useEffect(() => {
     init();
@@ -140,31 +153,42 @@ export default function AdminDashboard() {
         {/* Contact Messages */}
         {showMessages && (
           <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="text-base">Contact Messages</CardTitle>
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className="text-base">Contact Messages & Email Logs</CardTitle>
+              <div className="relative w-64">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Input
+                  placeholder="Filter by name or email..."
+                  value={messageSearch}
+                  onChange={e => setMessageSearch(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
             </CardHeader>
             <CardContent className="p-0">
               {messagesLoading ? (
                 <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-blue-600" /></div>
-              ) : messages.length === 0 ? (
+              ) : filteredMessages.length === 0 ? (
                 <p className="text-gray-400 text-sm text-center py-8">No messages yet.</p>
               ) : (
                 <Table>
                   <TableHeader>
                     <TableRow className="bg-gray-50">
                       <TableHead>Date</TableHead>
+                      <TableHead>Type</TableHead>
                       <TableHead>Name</TableHead>
                       <TableHead>Email</TableHead>
-                      <TableHead>Message</TableHead>
+                      <TableHead>Details</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {messages.map(msg => (
+                    {filteredMessages.map(msg => (
                       <TableRow key={msg.id}>
                         <TableCell className="text-xs text-gray-400 whitespace-nowrap">{new Date(msg.created_date).toLocaleDateString()}</TableCell>
+                        <TableCell><Badge className={msg.type === 'contact' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}>{msg.type === 'contact' ? 'Contact' : 'Email'}</Badge></TableCell>
                         <TableCell className="text-sm font-medium text-gray-900">{msg.name}</TableCell>
                         <TableCell className="text-sm text-blue-600">{msg.email}</TableCell>
-                        <TableCell className="text-sm text-gray-600 max-w-xs">{msg.message}</TableCell>
+                        <TableCell className="text-sm text-gray-600 max-w-xs">{msg.message || msg.subject || '—'}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
