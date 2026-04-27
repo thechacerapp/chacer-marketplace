@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Loader2, Search, Users, CreditCard, TrendingUp, Building2, ExternalLink, Plus, Pencil, RefreshCw } from "lucide-react";
+import { Loader2, Search, Users, CreditCard, TrendingUp, Building2, ExternalLink, Plus, Pencil, RefreshCw, MessageSquare, ChevronDown, ChevronUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import OfficeEditDrawer from "@/components/admin/OfficeEditDrawer";
 import AddFreeOfficeModal from "@/components/admin/AddFreeOfficeModal";
@@ -30,6 +30,18 @@ export default function AdminDashboard() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [syncResult, setSyncResult] = useState(null);
+  const [showMessages, setShowMessages] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [messagesLoading, setMessagesLoading] = useState(false);
+
+  const loadMessages = async () => {
+    if (showMessages) { setShowMessages(false); return; }
+    setShowMessages(true);
+    setMessagesLoading(true);
+    const msgs = await base44.entities.ContactMessage.list('-created_date', 50);
+    setMessages(msgs);
+    setMessagesLoading(false);
+  };
 
   useEffect(() => {
     init();
@@ -105,6 +117,9 @@ export default function AdminDashboard() {
             <Button onClick={() => setShowAddModal(true)} className="bg-blue-600 hover:bg-blue-700 text-white">
               <Plus className="w-4 h-4 mr-2" /> Add Free Trial Office
             </Button>
+            <Button onClick={loadMessages} variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50">
+              <MessageSquare className="w-4 h-4 mr-2" /> Contact Messages {showMessages ? <ChevronUp className="w-4 h-4 ml-1" /> : <ChevronDown className="w-4 h-4 ml-1" />}
+            </Button>
             <Button onClick={handleSyncToChacerApp} disabled={syncing} variant="outline" className="border-indigo-300 text-indigo-700 hover:bg-indigo-50">
               {syncing ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <RefreshCw className="w-4 h-4 mr-2" />}
               Sync to ChacerApp
@@ -120,6 +135,43 @@ export default function AdminDashboard() {
               : `❌ Sync failed: ${syncResult.error}`}
             <button onClick={() => setSyncResult(null)} className="ml-auto text-gray-400 hover:text-gray-600">✕</button>
           </div>
+        )}
+
+        {/* Contact Messages */}
+        {showMessages && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="text-base">Contact Messages</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              {messagesLoading ? (
+                <div className="flex justify-center py-8"><Loader2 className="w-6 h-6 animate-spin text-blue-600" /></div>
+              ) : messages.length === 0 ? (
+                <p className="text-gray-400 text-sm text-center py-8">No messages yet.</p>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow className="bg-gray-50">
+                      <TableHead>Date</TableHead>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Email</TableHead>
+                      <TableHead>Message</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {messages.map(msg => (
+                      <TableRow key={msg.id}>
+                        <TableCell className="text-xs text-gray-400 whitespace-nowrap">{new Date(msg.created_date).toLocaleDateString()}</TableCell>
+                        <TableCell className="text-sm font-medium text-gray-900">{msg.name}</TableCell>
+                        <TableCell className="text-sm text-blue-600">{msg.email}</TableCell>
+                        <TableCell className="text-sm text-gray-600 max-w-xs">{msg.message}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+            </CardContent>
+          </Card>
         )}
 
         {/* Stats */}
