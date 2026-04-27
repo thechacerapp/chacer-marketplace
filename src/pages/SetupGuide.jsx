@@ -141,7 +141,10 @@ const steps = [
       "Make sure all devices have their volume turned up so the alert is heard throughout the office.",
       "You can configure the emergency sound in Settings."
     ],
-    tip: "A siren-style sound is the best choice — staff will instantly know an emergency alert is different from a normal call, even without looking at the screen. For staff training: when the emergency button is activated, train all team members to safely stop what they are doing and go to the room where the emergency is happening."
+    tips: [
+      "A siren-style sound is the best choice — staff will instantly know an emergency alert is different from a normal call, even without looking at the screen.",
+      "Staff Training: When the emergency button is activated, train all team members to safely stop what they are doing and go to the room where the emergency is happening."
+    ]
   },
   {
     number: "9",
@@ -282,6 +285,18 @@ export default function SetupGuide() {
                       <p className="text-blue-700 text-sm leading-relaxed">
                         <span className="font-semibold">Tip: </span>{step.tip}
                       </p>
+                    </div>
+                  )}
+                  {step.tips && (
+                    <div className="space-y-2">
+                      {step.tips.map((t, i) => (
+                        <div key={i} className="flex items-start gap-3 bg-blue-50 rounded-xl px-4 py-3 border border-blue-100">
+                          <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                          <p className="text-blue-700 text-sm leading-relaxed">
+                            <span className="font-semibold">Tip: </span>{t}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
