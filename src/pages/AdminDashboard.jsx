@@ -184,6 +184,7 @@ export default function AdminDashboard() {
                         <div>
                           <p className="font-medium text-gray-900">{office.name}</p>
                           <p className="text-xs text-gray-400">{office.contact_email}</p>
+                          {office.contact_phone && <p className="text-xs text-gray-400">{office.contact_phone}</p>}
                         </div>
                       </TableCell>
                       <TableCell className="text-sm text-gray-600">{office.office_type || "—"}</TableCell>
