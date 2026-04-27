@@ -54,6 +54,7 @@ import HomePage from './pages/HomePage';
 import PricingPage from './pages/PricingPage';
 import SetupGuide from './pages/SetupGuide';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import __Layout from './components/Layout';
 
 
 export const PAGES = {
@@ -69,4 +70,5 @@ export const PAGES = {
 export const pagesConfig = {
     mainPage: "HomePage",
     Pages: PAGES,
+    Layout: __Layout,
 };
