@@ -39,6 +39,12 @@ export default function ClientDashboard() {
 
   const loadData = async () => {
     try {
+      const isAuthed = await base44.auth.isAuthenticated();
+      if (!isAuthed) {
+        base44.auth.redirectToLogin(window.location.href);
+        return;
+      }
+
       const me = await base44.auth.me();
       setUser(me);
 
@@ -60,11 +66,10 @@ export default function ClientDashboard() {
         if (subs.length > 0) setSubscription(subs[0]);
       }
     } catch (err) {
-      // Not authenticated — redirect to login
-      base44.auth.redirectToLogin(window.location.href);
-      return;
+      console.error("ClientDashboard loadData error:", err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleCancelSubscription = async () => {
