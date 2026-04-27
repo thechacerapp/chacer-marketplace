@@ -65,7 +65,7 @@ const steps = [
     intro: "Enter the most common reasons staff use to call team members. These appear as quick-select buttons so calls can be made in seconds.",
     instructions: [
       "Go to Call Reasons in Settings.",
-      "Add your most-used reasons (e.g., Patient Ready, Need Anesthesia, Need Something, Check Patient, Urgent).",
+      "Add your most-used reasons. We have thought of some to get you started: Patient Ready — Need Anesthetic — Check Patient — Urgent — No Rush — Nitrous Start — Sign Prescription — Insurance Question. (Add any others that fit your office workflow!)",
       "Reasons are optional — a call can be sent without selecting one.",
       "Staff can also type a custom reason directly on the call screen for unusual situations.",
       "If you notice a reason coming up often, add it to the list for faster access."
