@@ -91,16 +91,15 @@ const steps = [
     icon: Tablet,
     title: "Go Live on Your Devices",
     color: "bg-teal-600",
-    intro: "Once your app is built and configured, you can open it on any tablet, phone, or computer in your office. No special installation required — just open your website. We will send you the website link and, if you'd like to use the app on a tablet, a download file as well.",
+    intro: "Once your app is configured, you are ready to go live on all your devices. You have 2 options when using the app:",
     instructions: [
-      "We will email you your Chacer website link and, if requested, a download file for tablet installation.",
-      "To open the app, go to the website link (or open the downloaded app) and log in with the email and password provided to you.",
-      "Open your Chacer website or app on each device you plan to use.",
+      "Option 1: Open the app on any device through a browser — just go to thechacerapp.com from any phone, tablet, or computer connected to the internet.",
+      "Option 2 (Recommended): Download the app to any Android device. Tablets can be purchased on Amazon and placed in any area of the office — this is what we recommend for the best experience.",
+      "Open your Chacer app on each device you plan to use.",
       "Assign the correct room name to each device when prompted.",
       "Set the volume on each device to your preferred level.",
       "You are ready to go — staff can start making and receiving calls immediately.",
-      "To make any changes (names, rooms, sounds), go to Settings from any device.",
-      "Important: Do not share your Chacer website link publicly. Only give it to people you want to have access to the program."
+      "To make any changes (names, rooms, sounds), go to Settings from any device."
     ],
     tip: "Bookmark the website on each device so staff can open it with one tap."
   },
