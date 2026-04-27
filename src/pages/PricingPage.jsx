@@ -35,9 +35,10 @@ export default function PricingPage() {
               <span className="text-5xl font-extrabold text-gray-900">$49</span>
               <span className="text-sm ml-1 text-gray-400">/mo</span>
             </div>
-            <Button size="lg" className="w-full font-semibold mb-8" disabled>
+            <Button size="lg" className="w-full font-semibold mb-2" disabled>
               Coming Soon
             </Button>
+            <p className="text-gray-400 text-xs text-center mb-6">Use your office email — it becomes your login for the app.</p>
             <ul className="space-y-3 mt-auto">
               {features.map(f => (
                 <li key={f} className="flex items-start gap-2 text-sm">
@@ -58,9 +59,10 @@ export default function PricingPage() {
               <span className="text-sm ml-1 text-blue-200">/yr</span>
             </div>
             <p className="text-blue-300 text-sm mb-6">~$39/mo — save $118 vs monthly</p>
-            <Button size="lg" className="w-full font-semibold bg-white text-blue-900 mb-8" disabled>
+            <Button size="lg" className="w-full font-semibold bg-white text-blue-900 mb-2" disabled>
               Coming Soon
             </Button>
+            <p className="text-blue-300 text-xs text-center mb-6">Use your office email — it becomes your login for the app.</p>
             <ul className="space-y-3 mt-auto">
               {features.map(f => (
                 <li key={f} className="flex items-start gap-2 text-sm">
