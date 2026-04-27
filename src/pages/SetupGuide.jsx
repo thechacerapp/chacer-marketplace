@@ -133,7 +133,7 @@ const steps = [
     icon: AlertTriangle,
     title: "Emergency Button",
     color: "bg-red-600",
-    intro: "The Emergency Button is a special feature that instantly alerts every team member at once — for those moments when you need all hands on deck.",
+    intro: "The Emergency Button is a special feature that instantly alerts every team member at once — for those moments when you need all hands on deck. Note: This is not a replacement for calling 911. It is simply an in-office alert so your entire team knows an emergency is happening.",
     instructions: [
       "The emergency button calls all team members simultaneously, regardless of room or role.",
       "It is activated with a double-tap to prevent accidental triggering.",
@@ -141,7 +141,7 @@ const steps = [
       "Make sure all devices have their volume turned up so the alert is heard throughout the office.",
       "You can configure the emergency sound in Settings."
     ],
-    tip: "A siren-style sound is the best choice — staff will instantly know an emergency alert is different from a normal call, even without looking at the screen."
+    tip: "A siren-style sound is the best choice — staff will instantly know an emergency alert is different from a normal call, even without looking at the screen. For staff training: when the emergency button is activated, train all team members to safely stop what they are doing and go to the room where the emergency is happening."
   },
   {
     number: "9",
