@@ -19,10 +19,10 @@ export default function MoreInfoSection() {
     setLoading(true);
     setError("");
 
-    await base44.integrations.Core.SendEmail({
-      to: "thechacerapp@gmail.com",
-      subject: "New Info Request from Chacer Website",
-      body: `Someone wants more information about Chacer!\n\nName: ${form.name}\nEmail: ${form.email}`,
+    await base44.functions.invoke("sendContactEmail", {
+      name: form.name,
+      email: form.email,
+      message: "This person is requesting more information about Chacer.",
     });
 
     setLoading(false);
