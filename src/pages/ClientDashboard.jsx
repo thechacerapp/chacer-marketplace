@@ -42,10 +42,13 @@ export default function ClientDashboard() {
       const me = await base44.auth.me();
       setUser(me);
 
-      // Try multiple ways to find the office
+      // Try multiple ways to find the office (case-insensitive email matching)
       let officeList = await base44.entities.Office.filter({ created_by: me.email });
       if (officeList.length === 0) {
-        officeList = await base44.entities.Office.filter({ contact_email: me.email });
+        const allOffices = await base44.entities.Office.list();
+        officeList = allOffices.filter(o =>
+          o.contact_email?.toLowerCase() === me.email?.toLowerCase()
+        );
       }
       if (officeList.length === 0) {
         officeList = await base44.entities.Office.filter({ admin_user_id: me.id });
