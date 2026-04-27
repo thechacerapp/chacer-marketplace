@@ -9,12 +9,13 @@ const steps = [
     title: "Access Your Chacer App",
     color: "bg-sky-600",
     intro: "Before you begin setup, you'll need to open your Chacer app. You can access it on any device using the steps below.",
-    instructions: [
-      "Desktop version: Go to thechacerapp.com to access the app from any computer or laptop.",
-      "Android tablet: Check your email for the file to install the app on any Android tablet.",
+    instructions: [],
+    richInstructions: [
+      <span>Desktop version: Go to <a href="https://thechacerapp.com" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-600 underline">thechacerapp.com</a> to access the app from any computer or laptop.</span>,
+      <span>Android tablet: Check your email for the install file, or <a href="ANDROID_DOWNLOAD_URL" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-600 underline">click here to download the app</a>.</span>,
       "When you log in for the first time, you will be prompted to set a password — make note of it.",
       "Important: Use the same login and password on every device. This is what keeps all your devices connected and communicating with each other.",
-      "We recommend completing your initial setup on the desktop (thechacerapp.com) — it's much easier to configure settings from a computer than on a tablet screen."
+      <span>We recommend completing your initial setup on <a href="https://thechacerapp.com" target="_blank" rel="noopener noreferrer" className="font-bold text-blue-600 underline">thechacerapp.com</a> — it's much easier to configure settings from a computer than on a tablet screen.</span>
     ],
     tip: "Do your initial setup on the website — it's much easier than configuring everything on a small tablet screen."
   },
@@ -254,7 +255,7 @@ export default function SetupGuide() {
                   <p className="text-gray-600 mb-5 leading-relaxed">{step.intro}</p>
 
                   <ul className="space-y-2.5 mb-5">
-                    {step.instructions.map((instruction, i) => (
+                    {(step.richInstructions || step.instructions).map((instruction, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <ChevronRight className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700 text-sm leading-relaxed">{instruction}</span>
