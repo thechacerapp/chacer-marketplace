@@ -41,14 +41,21 @@ Deno.serve(async (req) => {
       status: office.status,
     };
 
-    // Also pull subscription data for plan_type and end date if office_id is available
+    // Always pull subscription data for plan_type and end date
     // Try to find matching subscription
     const subs = await base44.asServiceRole.entities.Subscription.filter({ office_id: office.id });
     if (subs.length > 0) {
       const sub = subs[0];
       syncData.plan_type = sub.plan_type;
-      syncData.subscription_end_date = sub.ends_on_date || sub.trial_end;
       syncData.subscription_status = sub.status;
+      // Use ends_on_date if it exists (paid subscription), otherwise use trial_end
+      syncData.subscription_end_date = sub.ends_on_date || sub.trial_end;
+    } else {
+      // No subscription found - set a default future date so account isn't locked
+      const futureDate = new Date();
+      futureDate.setFullYear(futureDate.getFullYear() + 1);
+      syncData.subscription_end_date = futureDate.toISOString().split('T')[0];
+      syncData.subscription_status = 'active';
     }
 
     // Check if an Office record with this email already exists in the Chacer app
