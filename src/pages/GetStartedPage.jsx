@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, Loader2, BadgeCheck } from "lucide-react";
+import { Loader2, BadgeCheck } from "lucide-react";
 
 export default function GetStartedPage() {
   const navigate = useNavigate();
@@ -21,9 +21,6 @@ export default function GetStartedPage() {
     contact_phone: "",
     office_type: "",
   });
-  const [discountCode, setDiscountCode] = useState("");
-  const [discountStatus, setDiscountStatus] = useState(null); // null | "valid" | "invalid"
-  const [discountInfo, setDiscountInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -47,7 +44,6 @@ export default function GetStartedPage() {
         contact_phone: form.contact_phone,
         plan,
         billing,
-        discount_code: discountCode.trim().toUpperCase() || undefined,
         ...(existingOfficeId ? { existing_office_id: existingOfficeId } : {})
       });
 
@@ -133,45 +129,6 @@ export default function GetStartedPage() {
                   <SelectItem value="Other">Other</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
-
-            {/* Discount Code */}
-            <div>
-              <Label htmlFor="discount">Discount Code <span className="text-gray-400 font-normal">(optional)</span></Label>
-              <div className="flex gap-2 mt-1">
-                <Input
-                  id="discount"
-                  placeholder="Enter code"
-                  value={discountCode}
-                  onChange={e => { setDiscountCode(e.target.value.toUpperCase()); setDiscountStatus(null); setDiscountInfo(null); }}
-                  className="uppercase"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={async () => {
-                    if (!discountCode.trim()) return;
-                    const codes = await base44.entities.DiscountCode.filter({ code: discountCode.trim().toUpperCase(), active: true });
-                    if (codes.length > 0) {
-                      setDiscountStatus("valid");
-                      setDiscountInfo(codes[0]);
-                    } else {
-                      setDiscountStatus("invalid");
-                      setDiscountInfo(null);
-                    }
-                  }}
-                >
-                  Apply
-                </Button>
-              </div>
-              {discountStatus === "valid" && (
-                <p className="text-green-600 text-xs mt-1 flex items-center gap-1">
-                  <BadgeCheck className="w-3 h-3" /> {discountInfo?.description || "Discount applied!"}
-                </p>
-              )}
-              {discountStatus === "invalid" && (
-                <p className="text-red-500 text-xs mt-1">Invalid or expired discount code.</p>
-              )}
             </div>
 
             {error && <p className="text-red-500 text-sm" role="alert" aria-live="assertive">{error}</p>}
