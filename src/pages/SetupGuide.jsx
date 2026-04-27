@@ -8,12 +8,13 @@ const steps = [
     icon: Tablet,
     title: "Access Your Chacer App",
     color: "bg-sky-600",
-    intro: "Before you begin setup, you'll need to open your Chacer app. We'll send you everything you need by email.",
+    intro: "Before you begin setup, you'll need to open your Chacer app. You can access it on any device using the steps below.",
     instructions: [
-      "Check your email for a message from Chacer — it will include your website link and a download file for tablet installation.",
-      "We recommend opening the app on the website first — it's easier to configure your office settings from a computer or laptop.",
-      "Once your settings are all configured, you can then open the app on your tablets and other devices.",
-      "To open the app, go to your website link (or open the downloaded app on a tablet) and log in with the email and password provided in your welcome email."
+      "Desktop version: Go to thechacerapp.com to access the app from any computer or laptop.",
+      "Android tablet: Check your email for the file to install the app on any Android tablet.",
+      "When you log in for the first time, you will be prompted to set a password — make note of it.",
+      "Important: Use the same login and password on every device. This is what keeps all your devices connected and communicating with each other.",
+      "We recommend completing your initial setup on the desktop (thechacerapp.com) — it's much easier to configure settings from a computer than on a tablet screen."
     ],
     tip: "Do your initial setup on the website — it's much easier than configuring everything on a small tablet screen."
   },
