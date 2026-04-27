@@ -46,7 +46,7 @@ export default function HeroSection() {
           <div className="flex flex-col items-center gap-1">
             <Link to={createPageUrl("GetStartedPage")}>
               <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 font-semibold px-8">
-                Start Free 10-Day Trial <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
+                Start Free 30-Day Trial <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
               </Button>
             </Link>
             <p className="text-blue-300 text-xs">Use your office email — it becomes your login for the app.</p>
@@ -58,7 +58,7 @@ export default function HeroSection() {
           </Link>
         </div>
         <div className="flex flex-wrap justify-center gap-6 text-sm text-blue-200">
-          {["10-day free trial", "No setup fees", "Full refund if cancelled within 10 days", "Works in any office type"].map(item => (
+          {["30-day free trial", "No setup fees", "Full refund if cancelled within 30 days", "Works in any office type"].map(item => (
             <div key={item} className="flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-green-400" aria-hidden="true" />
               {item}

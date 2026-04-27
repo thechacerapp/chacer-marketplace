@@ -72,7 +72,7 @@ export default function GetStartedPage() {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900">{existingOfficeId ? "Set Up Your Subscription" : "Start Your Free Trial"}</h1>
-            <p className="text-gray-500 mt-2 text-sm">{existingOfficeId ? "Choose a plan to keep your Chacer app active after your trial." : "10 days free. Cancel for a full refund within 10 days."}</p>
+            <p className="text-gray-500 mt-2 text-sm">{existingOfficeId ? "Choose a plan to keep your Chacer app active after your trial." : "30 days free. Cancel for a full refund within 30 days."}</p>
           </div>
 
           {/* Plan Selector */}
@@ -83,7 +83,7 @@ export default function GetStartedPage() {
               className={`rounded-xl border-2 p-4 text-left transition-all ${billing === "monthly" ? "border-blue-600 bg-blue-50" : "border-gray-200 bg-white hover:border-gray-300"}`}
             >
               <p className="font-semibold text-gray-900 text-sm">Monthly</p>
-              <p className="text-2xl font-extrabold text-gray-900 mt-1">$49<span className="text-sm font-normal text-gray-400">/mo</span></p>
+              <p className="text-2xl font-extrabold text-gray-900 mt-1">$30<span className="text-sm font-normal text-gray-400">/mo</span></p>
               <p className="text-xs text-gray-400 mt-1">Billed month-to-month</p>
               {billing === "monthly" && <BadgeCheck className="w-4 h-4 text-blue-600 mt-2" />}
             </button>
@@ -94,8 +94,8 @@ export default function GetStartedPage() {
             >
               <span className="absolute top-2 right-2 text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded-full">Save 20%</span>
               <p className="font-semibold text-gray-900 text-sm">Yearly</p>
-              <p className="text-2xl font-extrabold text-gray-900 mt-1">$39<span className="text-sm font-normal text-gray-400">/mo</span></p>
-              <p className="text-xs text-gray-400 mt-1">$468 billed once/year</p>
+              <p className="text-2xl font-extrabold text-gray-900 mt-1">~$25<span className="text-sm font-normal text-gray-400">/mo</span></p>
+              <p className="text-xs text-gray-400 mt-1">$299 billed once/year</p>
               {billing === "annual" && <BadgeCheck className="w-4 h-4 text-blue-600 mt-2" />}
             </button>
           </div>
@@ -184,7 +184,7 @@ export default function GetStartedPage() {
             </Button>
           </form>
 
-          <p className="text-xs text-gray-400 text-center mt-4">You'll be redirected to Stripe's secure checkout. No charge during your 10-day trial.</p>
+          <p className="text-xs text-gray-400 text-center mt-4">You'll be redirected to Stripe's secure checkout. No charge during your 30-day trial.</p>
         </div>
       </div>
       <ContactButton />

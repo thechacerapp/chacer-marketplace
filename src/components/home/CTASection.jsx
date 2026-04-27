@@ -8,7 +8,7 @@ export default function CTASection() {
     <section aria-label="Call to Action" className="py-24 bg-blue-900 text-white text-center">
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Office?</h2>
-        <p className="text-blue-200 text-lg mb-4">Start your 10-day free trial today. No credit card required upfront. Cancel anytime within 10 days for a full refund.</p>
+        <p className="text-blue-200 text-lg mb-4">Start your 30-day free trial today. No credit card required upfront. Cancel anytime within 30 days for a full refund.</p>
         <p className="text-green-300 font-semibold text-lg mb-10">Less than $1/day to improve team communication and efficiency.</p>
         <div className="flex flex-col items-center gap-1">
           <Link to={createPageUrl("GetStartedPage")}>
