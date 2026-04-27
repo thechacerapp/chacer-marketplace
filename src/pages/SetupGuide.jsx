@@ -27,7 +27,7 @@ const steps = [
     intro: "Start by deciding how many computers, tablets, and phones you plan to use. Each device will be given a room name so you always know exactly where a call is coming from.",
     instructions: [
       "Go into Settings in your Chacer app.",
-      "Enter the name for each room or station (e.g., Room 1, Hygiene A, Front Desk, X-Ray).",
+      "Enter the name for each room, station, or area. We have thought of some to get you started: Room 1, 2, 3, 4... — Hygiene A — Front Desk 1, 2, 3... — X-Ray — Break Room — Lab — Doctor Office — Sterilization — Assistant Desk — Consult Room. (Anywhere people may be in your office!)",
       "Each device you install the app on will be assigned one of these room names.",
       "You can add, edit, or remove room names at any time."
     ],
