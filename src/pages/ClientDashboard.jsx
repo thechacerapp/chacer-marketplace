@@ -199,7 +199,9 @@ export default function ClientDashboard() {
                   {subscription.amount > 0 && (
                     <div className="flex justify-between">
                       <span className="text-gray-500">Billing</span>
-                      <span className="font-medium text-gray-900">${subscription.amount}/mo</span>
+                      <span className="font-medium text-gray-900">
+                        ${subscription.amount} / {subscription.billing_interval === "annual" ? "year" : "month"}
+                      </span>
                     </div>
                   )}
 
