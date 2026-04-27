@@ -153,8 +153,8 @@ const steps = [
     color: "bg-indigo-600",
     intro: "Taking care of your tablets will extend their lifespan and keep Chacer running reliably every day. Here are our top recommendations for setup, placement, and daily habits.",
     instructions: [
-      "Turn tablets off at the end of each workday. This extends battery life and gives the device a chance to rest.",
-      "Do not leave tablets plugged in and charging 24/7 — this degrades the battery over time. Use a timer outlet or smart plug to limit charging to a few hours per night.",
+      "Turn tablets off at the end of each workday. New tablets have a built-in setting for scheduled on and off times — set these to match your office hours so tablets automatically turn off after hours without anyone having to remember.",
+      "Set Battery Saver to ON on each tablet. This helps extend battery life throughout the day.",
       "Set screen brightness to a moderate level (around 50–70%) to reduce battery drain and extend screen life.",
       "Set the screen timeout to a long interval (or never) so the app stays visible without staff needing to tap to wake it.",
       "Use Wi-Fi only mode and disable cellular data if the tablet supports it, to conserve battery.",
