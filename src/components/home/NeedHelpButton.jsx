@@ -65,7 +65,7 @@ export default function NeedHelpButton() {
             <div className="py-8 text-center">
               <div className="text-green-500 text-4xl mb-3">✓</div>
               <p className="text-gray-700 font-medium">Message sent!</p>
-              <p className="text-gray-500 text-sm mt-1">We'll get back to you shortly.</p>
+              <p className="text-gray-500 text-sm mt-1">We'll get back to you through the email you provided.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 mt-2">
