@@ -18,7 +18,7 @@ export default function PricingPage() {
       <div className="max-w-4xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h1>
-          <p className="text-gray-500 text-lg">Start with a 30-day free trial. Full refund if you cancel within 30 days.</p>
+          <p className="text-gray-500 text-lg">Start with a 30-day free trial. Credit card required — full refund if you cancel within 30 days.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
@@ -74,7 +74,7 @@ export default function PricingPage() {
         </div>
 
         <p className="text-center text-gray-400 text-sm mt-10">
-          All plans include a 30-day free trial. Cancel within 30 days for a complete refund — no questions asked.
+          All plans include a 30-day free trial. Credit card required at signup — cancel within 30 days for a complete refund, no questions asked.
         </p>
       </div>
       <ContactButton />

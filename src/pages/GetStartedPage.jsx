@@ -68,7 +68,7 @@ export default function GetStartedPage() {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900">{existingOfficeId ? "Set Up Your Subscription" : "Start Your Free Trial"}</h1>
-            <p className="text-gray-500 mt-2 text-sm">{existingOfficeId ? "Choose a plan to keep your Chacer app active after your trial." : "30 days free. Cancel for a full refund within 30 days."}</p>
+            <p className="text-gray-500 mt-2 text-sm">{existingOfficeId ? "Choose a plan to keep your Chacer app active after your trial." : "30 days free. A credit card is required to start — cancel within 30 days for a full refund."}</p>
           </div>
 
           {/* Plan Selector */}
