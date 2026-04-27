@@ -135,9 +135,14 @@ export default function ClientDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-6 py-10">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back, {user?.full_name || office.name}</h1>
-          <p className="text-gray-500 mt-1">Manage your Chacer subscription and access your app.</p>
+        <div className="mb-8 flex items-start justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Welcome back, {user?.full_name || office.name}</h1>
+            <p className="text-gray-500 mt-1">Manage your Chacer subscription and access your app.</p>
+          </div>
+          <Button variant="outline" size="sm" onClick={() => base44.auth.logout("/")}>
+            Log Out
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
