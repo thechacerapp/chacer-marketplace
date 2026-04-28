@@ -76,7 +76,7 @@ Deno.serve(async (req) => {
         metadata,
       },
       metadata,
-      success_url: `${appUrl}/ClientDashboard?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${appUrl}/ClientDashboard`,
       cancel_url: `${appUrl}/PricingPage`,
     });
 
