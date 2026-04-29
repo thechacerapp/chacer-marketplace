@@ -7,7 +7,7 @@ import NeedHelpButton from "@/components/home/NeedHelpButton";
 
 export default function HeroSection() {
   return (
-    <section aria-label="Hero" className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white overflow-hidden">
+    <section aria-label="Hero" className="relative bg-red-600 text-white overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-400 blur-3xl" />
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-indigo-400 blur-3xl" />
